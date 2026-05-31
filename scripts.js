@@ -66,7 +66,9 @@ var num = random(100)
     traitAmnt = 1
   }
 // Changes invalid trait amounts for Extreme Fusion invites
-  if (invite == "fusionEX" && (traitAmnt > 2 || traitAmnt < 1)) {
+  if (invite == "fusionEX" && traitAmnt > 1) {
+    traitAmnt = traitAmnt-1
+  } else if (invite == "fusionEX" && traitAmnt < 1) {
     traitAmnt = 1
   }
 
