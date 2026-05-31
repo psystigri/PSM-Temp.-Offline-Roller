@@ -77,7 +77,7 @@ var color = "Basic"
 var isShiny = false
 var isBasic = true
 
-if (num <= rare) {
+if (num < rare) {
   color = "Shiny"
   isShiny = true
   isBasic = false
@@ -226,8 +226,14 @@ if (invite == "common" && traitAmnt > 0) {
     traitline = traitline.replace("(TYPE)", "("+deltaroll.join("+")+")")
   }
 
-// Pushes to #results
+// Pushes to given results (div) line; also adds shiny sparkle (&#x2728;)
+// view decimal codes for emojis > https://www.quackit.com/character_sets/emoji/emoji_v3.0/unicode_emoji_v3.0_characters_all.cfm
+if (isShiny == true) {
+  document.getElementById(divID).innerHTML = pokespecies.join("+") + "/" + color + traitline + "&#x2728;"
+} else {
   document.getElementById(divID).innerHTML = pokespecies.join("+") + "/" + color + traitline
+}
+
 }
 
 
