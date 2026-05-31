@@ -1,0 +1,95 @@
+  Zapdos 
+  Articuno 
+  Moltres 
+  Gal. Zapdos
+  Gal. Articuno
+  Gal. Moltres
+  Mewtwo
+  Entei
+  Raikou 
+  Suicune 
+  Wo-Chien
+  Chien-Pao
+  Ting-Lu
+  Chi-Yu
+  Koraidon
+  Miraidon
+  Lugia 
+  Ho-Oh 
+  Regirock 
+  Regice 
+  Registeel 
+  Regigigas 
+  Latias
+  Latios 
+  Groudon 
+  Kyogre 
+  Rayquaza 
+  Azelf 
+  Uxie 
+  Mesprit 
+  Dialga 
+  Palkia 
+  Giratina
+  Cresselia 
+  Heatran 
+  Cobalion 
+  Terrakion 
+  Virizion
+  Tornadus
+  Thundurus
+  Landorus
+  Zekrom
+  Reshiram
+  Kyurem
+  Xerneas
+  Yveltal
+  Type: Null
+  Cosmog
+  Tapu Koko
+  Tapu Lele
+  Tapu Bulu
+  Tapu Fini
+  Necrozma
+  Zacian
+  Zamazenta
+  Eternatus
+  Kubfu
+  Regieleki
+  Regidrago
+  Calyrex
+  Munkidori
+  Okidogi
+  Fezandipiti
+  Ogerpon
+  Mew 
+  Celebi 
+  Jirachi 
+  Deoxys 
+  Manaphy 
+  Phione 
+  Darkrai
+  Shaymin
+  Victini 
+  Keldeo 
+  Meloetta 
+  Genesect 
+  Diancie
+  Hoopa 
+  Volcanion 
+  Magearna 
+  Marshadow 
+  Zeraora 
+  Meltan 
+  Zarude
+  Arceus
+  Nihilego 
+  Buzzwole
+  Pheromosa 
+  Xurkitree 
+  Celesteela 
+  Kartana 
+  Guzzlord
+  Poipole
+  Stakataka 
+  Blacephalon 

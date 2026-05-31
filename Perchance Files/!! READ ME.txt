@@ -1,0 +1,9 @@
+These are for the purposes of having (a version) of the Pokémon lists in quick access, + for me to be able to check the code and its
+calculations personally.
+
+Messing around in these won't do anything to break the HTML generator; however I'm still not comfortable with my code being copied,
+so keep that in mind. 
+
+Thank you! :3
+
+- PURPURC4T

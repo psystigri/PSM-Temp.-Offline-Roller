@@ -1,0 +1,1608 @@
+// Note: Text that comes after "//" is ignored, which allows
+// you to write notes - like the one you're reading now!
+
+title
+  Silent Eclipse Recruit Rolls
+
+notes
+  Elemental Recruits default to Grass if another type is not picked. Note that all rolling aspects may not be 100% correct if Grass wasn't hand selected.<br>Elemental Recruits may be used to roll starter Pokemon.<br><br><i>Roller believes it is [date().format("MMMM Do, YYYY")].</span></i>^[eggtype=="premier"]
+  Elemental Recruits may be used to roll starter Pokemon.<br>Remember to edit rolls which include Fusion to fit the Inventory format.<br><br><i>Roller believes it is [date().format("MMMM Do, YYYY")].</span></i>^[eggtype != "premier"]
+
+output
+  [preoutput.selectMany([rollnumber > 0 ? rollnumber : 1]).joinItems("<br><br>")]
+
+preoutput // [(pokemon).selectUnique(amnt or minamnt).joinItems("/traits")]/[traits]^[eggtype=="eggtype" ? 1 : 0]
+  [pokemon.selectUnique(amnt).joinItems("/Basic<br>")]/Basic^[eggtype=="poke" ? 1 : 0]
+  [pokemon.selectUnique(amnt).joinItems("/[deltaegg]<br>")]/[deltaegg]^[eggtype=="delta" ? 1 : 0]
+  [pokemon.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="great" ? 1 : 0]
+  [pokemon.selectUnique(amnt).joinItems("[b=ultratraits.selectOne]<br>")][b=ultratraits.selectOne]^[eggtype=="ultra" ? 1 : 0]
+  [regional.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="regional" ? 1 : 0]
+  <b>[typeselect]</b><br>[prempick]^[eggtype=="premier" ? 1 : 0]
+  [parkmon.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="park" ? 1 : 0]
+  [fakemon.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="fake" ? 1 : 0]
+  [sfakemon.selectUnique(minamnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="sfake" ? 1 : 0]
+  [mythical.selectUnique(minamnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="cherish" ? 1 : 0]
+  [ultrabeast.selectUnique(minamnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="beast" ? 1 : 0]
+  [legendary.selectUnique(minamnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="master" ? 1 : 0]
+  [ditto.selectMany(minamnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="ditto" ? 1 : 0]
+  [betamon.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="beta"]
+  [eventmon.selectMany(amnt).joinItems("[b=eventtraits.selectOne]<br>")][b=eventtraits.selectOne]^[eggtype=="event"]
+  [germ.selectMany(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[eggtype=="germ"]
+  [a=pokemon.consumableList]+[a]/Fusion<br>[fusions.selectMany(amnt-1).joinItems("/Fusion<br>")]/Fusion^[eggtype=="fusion" ? 1 : 0]
+  [pokemon.selectUnique(amnt).joinItems("/[chosentrait.sentenceCase]<br>")]/[chosentrait.sentenceCase]^[eggtype=="nest" ? 1 : 0]
+
+fusions=[a]+[a] // [a] == Consumable List of Pokémon
+
+chosentrait=Basic
+
+allpokemon
+  [pokemon]^[pokemon.getLength * 1.05]
+  [regional]^[regional.getLength]
+  [fakemon]^[fakemon.getLength * 0.95]
+
+allpokemonlength = [pokemon.getLength + regional.getLength + fakemon.getLength]
+
+deltaegg=Delta([deltatypes.selectUnique(deltanum).joinItems("+")])
+
+nestcolor //Affects HTML (color of trait chooser font)
+  gray^[eggtype != "nest"]
+  ^[eggtype == "nest"]
+nestwarning={<p id="nestdisclaimer">If you want to roll a <b>Fusion</b> or <b>Delta</b> Egg, they are separate from Nest Eggs- Please pick them rather than the option you are currently on. You will otherwise not get extra Pokémon in the fusion, or types for the Delta. Thank you!</p>^[eggtype == "nest"]|^[eggtype != "nest"]}
+
+pestcolor //Affects HTML (color of type chooser font)
+  gray^[eggtype != "premier"]
+  ^[eggtype == "premier"]
+
+tramnt //=100%
+  2^[eggtype != "ultra" ? 0.65 : 0.75]
+  3^[eggtype != "ultra" ? 0.25 : 0.15]
+  4^[eggtype != "ultra" ? 0.10 : 0.05]
+
+greattraits //=100
+  /Basic^0.30
+    multi=false
+  /[traits]^0.53
+    multi=false
+  /[traits.selectUnique(tramnt).joinItems("+")]^0.17
+    multi=true
+
+ultratraits //=100
+  /[traits]^75
+    multi=false
+  /[traits.selectUnique(tramnt).joinItems("+")]^25
+    multi=true
+
+typeselect
+  [petype.sentenceCase]^[selection=="true"]
+  Grass^[selection=="false"]
+
+selection
+  true^[petype=="grass"]
+  true^[petype=="fire"]
+  true^[petype=="water"]
+  true^[petype=="bug"]
+  true^[petype=="normal"]
+  true^[petype=="fighting"]
+  true^[petype=="flying"]
+  true^[petype=="poison"]
+  true^[petype=="electric"]
+  true^[petype=="ground"]
+  true^[petype=="psychic"]
+  true^[petype=="rock"]
+  true^[petype=="ice"]
+  true^[petype=="dragon"]
+  true^[petype=="ghost"]
+  true^[petype=="dark"]
+  true^[petype=="steel"]
+  true^[petype=="fairy"]
+  false^0.000000000001
+
+prempick
+  [premiermon.grasstype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="grass"]
+  [premiermon.firetype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="fire"]
+  [premiermon.watertype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="water"]
+  [premiermon.bugtype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="bug"]
+  [premiermon.normaltype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="normal"]
+  [premiermon.fightingtype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="fighting"]
+  [premiermon.flyingtype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="flying"]
+  [premiermon.poisontype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="poison"]
+  [premiermon.electrictype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="electric"]
+  [premiermon.groundtype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="ground"]
+  [premiermon.psychictype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="psychic"]
+  [premiermon.rocktype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="rock"]
+  [premiermon.icetype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="ice"]
+  [premiermon.dragontype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="dragon"]
+  [premiermon.ghosttype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="ghost"]
+  [premiermon.darktype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="dark"]
+  [premiermon.steeltype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="steel"]
+  [premiermon.fairytype.selectUnique(amnt).joinItems("[b=greattraits.selectOne]<br>")][b=greattraits.selectOne]^[petype=="fairy"]
+
+amnt // Shop Eggs
+  5^[moss.checked==false]
+  10^[moss.checked==true]
+
+minamnt // E.Shop Eggs (-Beta)
+  3^[moss.checked==false]
+  6^[moss.checked==true]
+
+ditto=Ditto // .selectMany variable ONLY
+germ={Alo.Grimer|Grimer^1.5}
+
+// !!Collapse when reading code!!
+// It's always longer than you remember it being!
+eventmon
+  [pokemon]/^0.95
+  [pokemon]+[pokemon]/Fusion+^0.05
+
+betamon
+  Bet.Chikorita
+  Honooguma
+  Kurusu
+  Bet.Hoothoot
+  Bet.Mareep
+  Mikon
+  Monja
+  Bet.Mantyke
+  Bet.Qwilfish
+  Bet.Pichu
+  Bet.Cleffa
+  Bet.Igglybuff
+  Bet.Natu
+  Gyopin
+  Manboo 
+  Para
+  Bet.Spinarak
+  Hinaazu
+  Bet.Phanpy
+  Bet.Girafarig
+  Koonya
+  Rinrin
+  Bet.Poliwag
+  Bet.Ledyba
+  Puchikoon
+  Taaban
+  Betobebii
+  Bet.Remoraid
+  Bet.Tyrogue
+  Pudi
+  Bet.Hoppip
+  Baririina
+  Bet.Smoochum
+  Bet.Elekid
+  Bet.Magby
+  Bet.Oddish
+  Bet.Bellsprout
+  Bomushikaa
+  Bet.Delibird
+  Kotora
+  Bet.Farfetch'd 
+  Madaamu
+  Norowara
+  Bet.Murkrow
+  Bet.Happiny
+  Bet.Pinsir 
+  Wolfman
+  Bet.Porygon
+  Bet.Lickitung 
+  Bet.Horsea
+  Bet.Raikou
+  Bet.Entei
+  Bet.Suicune
+  Bet.Sneasel
+  Bet.Aipom
+  Bet.Eevee^[monthday=="04-17" ? 10 : 1] // Boosted on Leafy's Birthday
+  Bet.Wooper
+  Bet.Shuckle
+  Bet.Slugma
+
+pokemon
+  Bulbasaur
+  Charmander
+  Squirtle
+  Caterpie
+  Weedle
+  Pidgey
+  Rattata
+  Spearow
+  Ekans
+  Pichu
+  Sandshrew
+  Nidoran
+  Cleffa
+  Vulpix
+  Igglybuff
+  Zubat
+  Oddish
+  Paras
+  Venonat
+  Diglett
+  Meowth
+  Psyduck
+  Mankey
+  Growlithe
+  Poliwag
+  Abra
+  Machop
+  Bellsprout
+  Tentacool
+  Geodude
+  Ponyta
+  Slowpoke
+  Magnemite
+  Farfetch'd
+  Doduo
+  Seel
+  Grimer
+  Shellder
+  Gastly
+  Onix
+  Drowzee
+  Krabby
+  Voltorb
+  Exeggcute
+  Cubone
+  Tyrogue
+  Lickitung
+  Koffing
+  Rhyhorn
+  Happiny
+  Tangela
+  Kangaskhan
+  Horsea
+  Goldeen
+  Staryu
+  Mime Jr.
+  Scyther
+  Smoochum
+  Elekid
+  Magby
+  Pinsir
+  Tauros
+  Magikarp
+  Lapras
+  Eevee^[monthday=="04-17" ? 20 : 1] // Boosted on Leafy's birthday
+  Porygon
+  Omanyte
+  Kabuto
+  Aerodactyl
+  Munchlax
+  Dratini
+  Chikorita
+  Cyndaquil
+  Totodile
+  Sentret
+  Hoothoot
+  Ledyba
+  Spinarak
+  Chinchou
+  Togepi
+  Natu
+  Mareep
+  Azurill
+  Bonsly
+  Hoppip
+  Aipom
+  Sunkern
+  Yanma
+  Wooper
+  Murkrow
+  Misdreavus
+  Unown
+  Wynaut
+  Girafarig
+  Pineco
+  Dunsparce
+  Gligar
+  Snubbull
+  Qwilfish
+  Shuckle
+  Heracross
+  Sneasel
+  Teddiursa
+  Slugma
+  Swinub
+  Corsola
+  Remoraid
+  Delibird
+  Mantyke
+  Skarmory
+  Houndour
+  Phanpy
+  Stantler
+  Smeargle
+  Miltank
+  Treecko
+  Torchic
+  Mudkip
+  Poochyena
+  Zigzagoon
+  Wurmple
+  Lotad
+  Seedot
+  Taillow
+  Wingull
+  Ralts
+  Surskit
+  Shroomish
+  Slakoth
+  Nincada
+  Whismur
+  Makuhita
+  Nosepass
+  Skitty
+  Sableye
+  Mawile
+  Aron
+  Meditite
+  Electrike
+  Plusle
+  Minun
+  Volbeat
+  Illumise
+  Budew
+  Gulpin
+  Carvanha
+  Wailmer
+  Numel
+  Torkoal
+  Spoink
+  Spinda
+  Trapinch
+  Cacnea
+  Swablu
+  Zangoose
+  Seviper
+  Lunatone
+  Solrock
+  Barboach
+  Corphish
+  Baltoy
+  Lileep
+  Anorith
+  Feebas
+  Castform
+  Kecleon
+  Shuppet
+  Duskull
+  Tropius
+  Chingling
+  Absol
+  Snorunt
+  Spheal
+  Clamperl
+  Relicanth
+  Luvdisc
+  Bagon
+  Beldum
+  Turtwig
+  Chimchar
+  Piplup
+  Starly
+  Bidoof
+  Kricketot
+  Shinx
+  Cranidos
+  Shieldon
+  Burmy
+  Combee
+  Pachirisu
+  Buizel
+  Cherubi
+  Shellos
+  Drifloon
+  Buneary
+  Glameow
+  Stunky
+  Bronzor
+  Chatot
+  Spiritomb
+  Gible
+  Riolu
+  Hippopotas
+  Skorupi
+  Croagunk
+  Carnivine
+  Finneon
+  Snover
+  Rotom
+  Snivy
+  Tepig
+  Oshawott
+  Patrat
+  Lillipup
+  Purrloin
+  Pansage
+  Pansear
+  Panpour
+  Munna
+  Pidove
+  Blitzle
+  Roggenrola
+  Woobat
+  Drilbur
+  Audino
+  Timburr
+  Tympole
+  Throh
+  Sawk
+  Sewaddle
+  Venipede
+  Cottonee
+  Petilil
+  Basculin
+  Sandile
+  Darumaka
+  Maractus
+  Dwebble
+  Scraggy
+  Sigilyph
+  Yamask
+  Tirtouga
+  Archen
+  Trubbish
+  Zorua
+  Minccino
+  Gothita
+  Solosis
+  Ducklett
+  Vanillite
+  Deerling
+  Emolga
+  Karrablast
+  Foongus
+  Frillish
+  Alomomola
+  Joltik
+  Ferroseed
+  Klink
+  Tynamo
+  Elgyem
+  Litwick
+  Axew
+  Cubchoo
+  Cryogonal
+  Shelmet
+  Stunfisk
+  Mienfoo
+  Druddigon
+  Golett
+  Pawniard
+  Bouffalant
+  Rufflet
+  Vullaby
+  Heatmor
+  Durant
+  Deino
+  Larvesta
+  Chespin
+  Fennekin
+  Froakie
+  Bunnelby
+  Fletchling
+  Scatterbug
+  Litleo
+  Flabébé
+  Skiddo
+  Pancham
+  Furfrou
+  Espurr^[monthday == "06-07" ? 20 : 1]
+  Honedge
+  Spritzee
+  Swirlix
+  Inkay
+  Binacle
+  Skrelp
+  Clauncher
+  Helioptile
+  Tyrunt
+  Amaura
+  Hawlucha
+  Dedenne
+  Carbink
+  Goomy
+  Klefki
+  Phantump
+  Pumpkaboo
+  Bergmite
+  Noibat
+  Rowlet
+  Litten
+  Popplio
+  Pikipek
+  Yungoos
+  Grubbin
+  Crabrawler
+  Bai.Oricorio
+  Pom.Oricorio
+  Pa'u.Oricorio
+  Sen.Oricorio
+  Cutiefly
+  Rockruff
+  Wishiwashi
+  Mareanie
+  Mudbray
+  Dewpider
+  Fomantis
+  Morelull
+  Salandit
+  Stufful
+  Bounsweet
+  Comfey
+  Oranguru
+  Passimian
+  Wimpod
+  Sandygast
+  Pyukumuku
+  Minior
+  Komala
+  Turtonator
+  Togedemaru
+  Mimikyu
+  Bruxish
+  Drampa
+  Dhelmise
+  Jangmo-o
+  Grookey
+  Scorbunny
+  Sobble
+  Skwovet
+  Rookidee
+  Blipbug
+  Nickit
+  Gossifleur
+  Wooloo
+  Chewtle
+  Yamper
+  Rolycoly
+  Applin
+  Silicobra
+  Cramorant
+  Arrokuda
+  Toxel
+  Sizzlipede
+  Clobbopus
+  Sinistea
+  Hatenna
+  Impidimp
+  Milcery
+  Falinks
+  Pincurchin
+  Snom
+  Stonjourner
+  Eiscue
+  Indeedee
+  Morpeko
+  Cufant
+  Dracozolt
+  Arctozolt
+  Dracovish
+  Arctovish
+  Duraludon
+  Dreepy
+  Sprigatito
+  Fuecoco
+  Quaxly
+  Lechonk
+  Tarountula
+  Nymble
+  Pawmi
+  Tandemaus
+  Fidough
+  Smoliv
+  Squawkabilly
+  Nacli
+  Charcadet
+  Tadbulb
+  Wattrel
+  Maschiff
+  Shroodle
+  Bramblin
+  Toedscool
+  Klawf
+  Capsakid
+  Rellor
+  Flittle
+  Tinkatink
+  Wiglett
+  Bombirdier
+  Finizen
+  Varoom
+  Cyclizar
+  Orthworm
+  Glimmet
+  Greavard
+  Flamigo
+  Cetoddle
+  Veluza
+  Dondozo
+  Tatsugiri
+  Frigibax
+  Gimmighoul
+
+parkmon
+  Bulbasaur
+  Charmander
+  Squirtle
+  Pichu
+  Eevee
+  Chikorita
+  Cyndaquil
+  Totodile
+  Treecko
+  Torchic
+  Mudkip
+  Turtwig
+  Chimchar
+  Fuecoco
+  Quaxly
+  Sprigatito
+  Piplup
+  Snivy
+  Tepig
+  Oshawott
+  Chespin
+  Fennekin
+  Froakie
+  Rowlet
+  Litten
+  Popplio
+  Grookey
+  Scorbunny
+  Sobble
+
+fakemon // Last Added: Cragolith (January 17th 2023)
+  Bityblocky
+  Grublee
+  Emjikid
+  Snowpy
+  Uffy
+  Embake
+  Hachuloid
+  Clouver
+  Snailing
+  Snowlett
+  Squeaker
+  Menchup
+  Flarama
+  Berrifox
+  Whiskit
+  Puponin
+  Toxerwolf
+  Skunxie
+  Nudibun
+  Glowfly
+  Witird
+  Mallowcholy
+  Laybit
+  Doodlursine
+  Bellkitt
+  Bellpup
+  Lepiva
+  Lobee
+  Pickpossum
+  Bandicoon
+  Miasmaw
+  Boxmi
+  Chillcub
+  Dalidun
+  Obsidqian
+  Mothbol
+  Pikpi
+  Jack-O
+  Faedrake
+  Phanto
+  Axoneko
+  Wispkit
+  Lamiet
+  Amaltyr
+  Skarekranne
+  Cryub
+  Gradebuddi
+  Icerpora
+  Hallobat
+  Napmew
+  Chowster
+  Kittypillar
+  Gatorb
+  Telepety
+  Sobpot
+  Stumboal
+  Tranziftyr
+  Faunt
+  Zaproe
+  Puppity^[monthday=="04-17" ? 15 : 1] // Boosted on Leafy's birthday
+  Velozolt
+  Adorimp
+  Wraylusc
+  Mudsra
+  Strawdree
+  Curpillar
+  Aeragon
+  Skelert
+  Shibun
+  Chillafluff
+  Puppard
+  Budy
+  Dingrai
+  Servidog
+  Smileo
+  Chiborb
+  Werelunus
+  Boaris
+  Fusagon
+  Drabbit
+  Rhyniamber
+  Tuppet
+  Animagard
+  Pagari
+  Axovolt
+  Pyrochub
+  Slup^[monthday == "05-29" || monthday == "06-07" ? 15 : 1] // boosted on kip's birthday
+  Froffin
+  Stacula
+  Dingmole
+  Teslound
+  Wispeon
+  Coplit
+  Duos
+  Inkit
+  Epochopod
+  Musel
+  Mimicite 
+  Brachiby
+  Techni 
+  Cleyshel
+
+sfakemon // Last Added:
+  Wispup
+  Serpism
+  Coonchilla
+  Avamoth
+  Spiriata
+  Fuegosaur
+  Polaryn
+  Stasgoyle
+  Dripmoth
+
+regional
+  Alo.Rattata
+  Alo.Sandshrew
+  Alo.Vulpix
+  Alo.Diglett
+  Alo.Meowth
+  Alo.Geodude
+  Alo.Grimer
+  Alo.Pichu
+  Alo.Exeggcute
+  Alo.Cubone
+  Gal.Koffing
+  Gal.Mime Jr
+  Gal.Meowth
+  Gal.Ponyta
+  Gal.Slowpoke 
+  Gal.Farfetch’d
+  Gal.Corsola
+  Gal.Zigzagoon 
+  Gal.Stunfisk
+  Gal.Darumaka
+  Gal.Yamask 
+  His.Growlithe
+  Pal.Wooper
+  Pal.Tauros
+  His.Voltorb
+  His.Cyndaquil
+  His.Qwilfish
+  His.Sneasel
+  His.Oshawott
+  His.Petilil
+  His.Basculin
+  His.Zorua
+  His.Rufflet
+  His.Goomy
+  His.Rowlet
+  His.Bergmite
+  Great Tusk
+  Scream Tail
+  Brute Bonnet
+  Flutter Mane
+  Slither Wing
+  Sandy Shocks
+  Iron Treads
+  Iron Bundle
+  Iron Hands
+  Iron Jugulis
+  Iron Moth
+  Iron Thorns
+  Roaring Moon
+  Iron Valiant
+  Raging Bolt
+  Iron Crown
+
+mythical
+  Mew 
+  Celebi 
+  Jirachi 
+  Deoxys 
+  Manaphy 
+  Phione 
+  Darkrai
+  Shaymin
+  Victini 
+  Keldeo 
+  Meloetta 
+  Genesect 
+  Diancie
+  Hoopa 
+  Volcanion 
+  Magearna 
+  Marshadow 
+  Zeraora 
+  Meltan 
+  Zarude
+  Arceus^0.1
+
+legendary
+  {Z|Gal.Z}apdos 
+  {A|Gal.A}rticuno 
+  {M|Gal.M}oltres 
+  Mewtwo
+  Entei
+  Raikou 
+  Suicune 
+  Wo-Chien
+  Chien-Pao
+  Ting-Lu
+  Chi-Yu
+  Koraidon
+  Miraidon
+  Lugia 
+  Ho-Oh 
+  Regirock 
+  Regice 
+  Registeel 
+  Regigigas 
+  Latias
+  Latios 
+  Groudon 
+  Kyogre 
+  Rayquaza 
+  Azelf 
+  Uxie 
+  Mesprit 
+  Dialga 
+  Palkia 
+  Giratina
+  Cresselia 
+  Heatran 
+  Cobalion 
+  Terrakion 
+  Virizion
+  Tornadus
+  Thundurus
+  Landorus
+  Zekrom
+  Reshiram
+  Kyurem
+  Xerneas
+  Yveltal
+  Type: Null
+  Cosmog
+  Tapu Koko
+  Tapu Lele
+  Tapu Bulu
+  Tapu Fini
+  Necrozma
+  Zacian
+  Zamazenta
+  Eternatus
+  Kubfu
+  Regieleki
+  Regidrago
+  Calyrex
+  Munkidori
+  Okidogi
+  Fezandipiti
+  Ogerpon
+
+ultrabeast
+  Nihilego 
+  Buzzwole
+  Pheromosa 
+  Xurkitree 
+  Celesteela 
+  Kartana 
+  Guzzlord
+  Poipole
+  Stakataka 
+  Blacephalon 
+
+premiermon
+  grasstype
+    Bulbasaur
+    Oddish
+    Paras
+    Bellsprout
+    Exeggcute
+    Tangela
+    Chikorita
+    Hoppip
+    Sunkern
+    Treecko
+    Lotad
+    Seedot
+    Shroomish
+    Cacnea
+    Lileep
+    Tropius
+    Turtwig
+    Budew
+    Cherubi
+    Carnivine
+    Snover
+    Snivy
+    Pansage
+    Sewaddle
+    Cottonee
+    Petilil
+    Maractus
+    Deerling
+    Foongus
+    Ferroseed
+    Chespin
+    Skiddo
+    Phantump
+    Pumpkaboo
+    Rowlet
+    Fomantis
+    Morelull
+    Bounsweet
+    Dhelmise
+    Grookey
+    Gossifleur
+    Applin
+    Sprigatito^0
+  firetype
+    Charmander
+    Vulpix
+    Growlithe
+    Ponyta
+    Cyndaquil
+    Slugma
+    Houndour
+    Magby
+    Torchic
+    Numel
+    Torkoal
+    Chimchar
+    Tepig
+    Pansear
+    Darumaka
+    Litwick
+    Heatmor
+    Larvesta
+    Fennekin
+    Litleo
+    Litten
+    Ba. Oricorio
+    Salandit
+    Turtonator
+    Scorbunny
+    Sizzlipede
+    Fuecoco^0
+  watertype
+    Squirtle
+    Psyduck
+    Poliwag
+    Tentacool
+    Slowpoke
+    Seel
+    Shellder
+    Krabby
+    Horsea
+    Goldeen
+    Staryu
+    Magikarp
+    Lapras
+    Omanyte
+    Kabuto
+    Totodile
+    Chinchou
+    Wooper
+    Qwilfish
+    Corsola
+    Remoraid
+    Mudkip
+    Lotad
+    Wingull
+    Surskit
+    Carvanha
+    Wailmer
+    Barboach
+    Corphish
+    Feebas
+    Spheal
+    Clampearl
+    Relicanth
+    Luvdisc
+    Piplup
+    Buizel
+    Shellos
+    Finneon
+    Mantyke
+    Oshawott
+    Panpour
+    Tympole
+    Basculin
+    Tirtouga
+    Ducklett
+    Frillish
+    Alomomola
+    Froakie
+    Binacle
+    Skrelp
+    Clauncher
+    Popplio
+    Wishiwashi
+    Mareanie
+    Dewpider
+    Wimpod
+    Pyukumuku
+    Bruxish
+    Sobble
+    Chewtle
+    Cramorant
+    Arrokuda
+    Dracovish
+    Arctovish
+    Quaxly^0
+  bugtype
+    Caterpie
+    Weedle
+    Paras
+    Venonat
+    Scyther
+    Pinsir
+    Ledyba
+    Spinarak
+    Yanma
+    Pineco
+    Shuckle
+    Heracross
+    Wurmple
+    Surskit
+    Nincada
+    Volbeat
+    Illumise
+    Anorith
+    Kricketot
+    Burmy
+    Combee
+    Skorupi
+    Sewaddle
+    Venipede
+    Dwebble
+    Karrablast
+    Joltik
+    Shelmet
+    Durant
+    Larvesta
+    Scatterbug
+    Grubbin
+    Cutiefly
+    Dewpider
+    Wimpod
+    Blipbug
+    Sizzlipede
+    Snom
+  normaltype
+    Pidgey
+    Rattata
+    Spearow
+    Meowth
+    Farfetch'd
+    Doduo
+    Lickitung
+    Kangaskhan
+    Tauros
+    Eevee
+    Porygon
+    Sentret
+    Hoothoot
+    Igglybuff
+    Aipom
+    Girafarig
+    Dunsparce
+    Teddiursa
+    Stantler
+    Smeargle
+    Miltank
+    Zigzagoon
+    Taillow
+    Slakoth
+    Whismur
+    Azurill
+    Skitty
+    Spinda
+    Swablu
+    Zangoose
+    Castform
+    Kecleon
+    Starly
+    Bidoof
+    Buneary
+    Glameow
+    Happiny
+    Chatot
+    Munchlax
+    Lickitung
+    Patrat
+    Lillipup
+    Pidove
+    Audino
+    Minccino
+    Deerling
+    Bouffalant
+    Rufflet
+    Bunnelby
+    Fletchling
+    Litleo
+    Furfrou
+    Helioptile
+    Pikipek
+    Yungoos
+    Stufful
+    Oranguru
+    Komala
+    Drampa
+    Skwovet
+    Wooloo
+    Indeedee
+  fightingtype
+    Mankey
+    Machop
+    Tyrogue
+    Makuhita
+    Riolu
+    Timburr
+    Throh
+    Sawk
+    Mienfoo
+    Pancham
+    Crabrawler
+    Passimian
+    Clobbopus
+    Falinks
+    Meditite
+    Hawlucha
+    Heracross
+    Croagunk
+    Scraggy
+    Stufful
+  flyingtype
+    Rookidee
+    Noibat
+    Cramorant
+    Pidgey
+    Spearow
+    Zubat
+    Farfetch'd
+    Doduo
+    Scyther
+    Aerodactyl
+    Hoothoot
+    Ledyba
+    Natu
+    Hoppip
+    Yanma
+    Murkrow
+    Gligar
+    Delibird
+    Skarmory
+    Taillow
+    Wingull
+    Swablu
+    Tropius
+    Starly
+    Combee
+    Drifloon
+    Chatot
+    Mantyke
+    Pidove
+    Woobat
+    Sigilyph
+    Archen
+    Ducklett
+    Emolga
+    Rufflet
+    Vullaby
+    Fletchling
+    Hawlucha
+    Rowlet
+    Pikipek
+    {Bai.|Pom.|Pa'u.|Sensu} Oricorio
+    Minior
+  poisontype
+    Ekans
+    Nidoran
+    Grimer
+    Koffing
+    Gulpin
+    Seviper
+    Trubbish
+    Zubat
+    Stunky
+    Skorupi
+    Croagunk
+    Skrelp
+    Mareanie
+    Salandit
+    Bulbasaur
+    Weedle
+    Oddish
+    Venonat
+    Bellsprout
+    Tentacool
+    Gastly
+    Spinarak
+    Qwilfish
+    Budew
+    Venipede
+    Foongus
+    Toxel
+  electrictype
+    Voltorb
+    Pichu
+    Mareep
+    Elekid
+    Electrike
+    Plusle
+    Minun
+    Shinx
+    Pachirisu
+    Blitzle
+    Tynamo
+    Yamper
+    Pincurchin
+    Magnemite
+    Rotom
+    Emolga
+    Helioptile
+    Dedenne
+    Pom. Oricorio
+    Togedemaru
+    Toxel
+    Morpeko
+    Dracozolt
+    Arctozolt
+    Chinchou
+    Joltik
+    Stunfisk
+  groundtype
+    Sandshrew
+    Diglett
+    Cubone
+    Phanpy
+    Trapinch
+    Hippopotas
+    Drilbur
+    Mudbray
+    Silicobra
+    Rhyhorn
+    Gligar
+    Baltoy
+    Sandile
+    Stunfisk
+    Golett
+    Geodude
+    Onix
+    Wooper
+    Swinub
+    Larvitar
+    Nincada
+    Numel
+    Barboach
+    Gible
+    Sandygast
+  psychictype
+    Abra
+    Drowzee
+    Unown
+    Spoink
+    Chingling
+    Wynaut
+    Munna
+    Gothita
+    Solosis
+    Elgyem
+    Espurr^[monthday == "06-07" ? 10 : 1]
+    Hatenna
+    Natu
+    Ralts
+    Mime Jr.
+    Woobat
+    Sigilyph
+    Pa'u Oricorio
+    Indeedee
+    Slowpoke
+    Exeggcute
+    Girafarig
+    Smoochum
+    Meditite
+    Lunatone
+    Solrock
+    Baltoy
+    Beldum
+    Bronzor
+    Inkay
+    Oranguru
+    Bruxish
+  rocktype
+    Nosepass
+    Cranidos
+    Roggenrola
+    Bonsly
+    Rockruff
+    Stonjourner
+    Rolycoly
+    Geodude
+    Onix
+    Omanyte
+    Kabuto
+    Aerodactyl
+    Larvitar
+    Lunatone
+    Solrock
+    Lileep
+    Anorith
+    Shieldon
+    Archen
+    Binacle
+    Tyrunt
+    Carbink
+    Amaura
+    Minior
+    Rhyhorn
+    Shuckle
+    Corsola
+    Aron
+    Relicanth
+    Dwebble
+    Tirtouga
+  icetype
+    Snorunt
+    Vanillite
+    Cubchoo
+    Cryogonal
+    Bergmite
+    Eiscue
+    Swinub
+    Delibird
+    Smoochum
+    Spheal
+    Snom
+    Lapras
+    Sneasel
+    Snover
+    Amaura
+    Arctozolt
+  dragontype
+    Dratini
+    Bagon
+    Axew
+    Druddigon
+    Goomy
+    Jangmo-o
+    Gible
+    Dreepy
+    Deino
+    Tyrunt
+    Noibat
+    Turtonator
+    Drampa
+    Applin
+    Dracozolt
+    Dracovish
+    Duraludon
+  ghosttype
+    Misdreavus
+    Shuppet
+    Duskull
+    Yamask
+    Sinistea
+    Gastly
+    Drifloon
+    Spiritomb
+    Litwick
+    Phantump
+    Pumpkaboo
+    Sen. Oricorio
+    Sandygast
+    Mimikyu
+    Dhelmise
+    Sableye
+    Rotom
+    Frillish
+    Golett
+    Honedge
+    Dreepy
+  darktype
+    Poochyena
+    Absol
+    Purrloin
+    Zorua
+    Nickit
+    Murkrow
+    Sneasel
+    Houndour
+    Sableye
+    Pawniard
+    Scraggy
+    Vullaby
+    Deino
+    Inkay
+    Impidimp
+    Carvanha
+    Stunky
+    Spiritomb
+    Sandile
+    Morpeko
+  steeltype
+    Klink
+    Cufant
+    Skarmory
+    Mawile
+    Aron
+    Beldum
+    Bronzor
+    Honedge
+    Klefki
+    Duraludon
+    Magnemite
+    Shieldon
+    Ferroseed
+    Pawniard
+    Durant
+    Togedemaru
+  fairytype
+    Cleffa
+    Togepi
+    Snubbull
+    Flabébé
+    Spritzee
+    Swirlix
+    Comfey
+    Milcery
+    Igglybuff
+    Ralts
+    Azurill
+    Mawile
+    Mime Jr.
+    Cottonee
+    Dedenne
+    Carbink
+    Klefki
+    Cutiefly
+    Morelull
+    Mimikyu
+    Impidimp
+
+traits
+  Variant^[b.multi == true ? 12 : 10]
+  Shiny^[b.multi == true ? 11 : 10]
+  Wonderland^[b.multi == true ? 8.5 : 7]
+  Copycat^7
+  Shadow^6
+  Nuclear^6
+  Aura^6
+  Glowing^6
+  Slime^6
+  Alien^5
+  Cloud^5
+  Galactic^5
+  Seraph^5
+  Demonic^5
+  Mutated^[b.multi == true ? 7 : 5]
+  Toy^5
+  Piñata^5
+  Aquatic^5
+  Collab^4
+  Terrarium^4
+  Neoteny^4
+  Faelight^4
+  Delta([deltatypes.selectUnique(deltanum).joinItems("+")])^3
+  Snacks^3
+  Gem^3
+  Sculpture^3
+  Joyous^[monthday=="04-17" ? 8 : 3]
+  Glitch^3
+  Headspace^3
+  Origin^2
+  Cyber^2
+  Lovestruck^[month=="02"?5:0] // Shows up in February
+  Overgrown^[monthday=="05-29" ? 20 : month=="03" ? 4 : 0] // Shows up in March & Kip's Birthday
+  Jokester^[month=="04"?5:0] // Shows up in April
+  Prism^[month=="06"?5:0] // Shows up in June
+  Costumed^[monthday=="06-07"?8:0] // Shows up on my birthday
+  Costumed^[month=="10"?4:0] // Shows up in October
+  Cornucopia^[year > 2023 && month=="10" ? 4 : 0] // Shows up in October (after 2023). Year specification can be removed later
+  Starbound^[monthday=="12-25"?8:monthday=="12-24"?5:0] // Shows up on Christmas and Christmas Eve
+  Shivering^[month=="12" && year>=2023 ? 5 : 0] // Shows up in December (after 2022)
+  Fusion (+ [pokemon])^[eggtype == "great" ? 6 : eggtype == "ultra" ? 7 : eggtype == "ditto" ? 3 : eggtype == "germ" ? 4.5 : 0] // Regular Pokemon Fusions
+  Fusion (+ {[pokemon]|[regional]^1.2})^[eggtype == "regional" ? 6 : 0] // Regional Recruit Fusions, slightly promotes Regional Fusions
+  Fusion (+ {[pokemon]|[betamon]^1.5})^[eggtype == "beta" ? 6 : 0] // Beta Egg Fusions, slightly promotes Beta Fusions
+  Fusion (+ {[pokemon]|[parkmon]^2})^[eggtype == "park" ? 5 : 0] // Park Egg Fusions, promotes Starter Fusions
+  Fusion (+  {[pokemon]|[fakemon]^1.5})^[eggtype == "fake" ? 6: 0] // Fakemon Egg Fusions, promotes Fakemon Fusions
+  Fusion (+  {[pokemon]^2|[fakemon]^4|[sfakemon]^2.5})^[eggtype == "sfake" ? 5 : 0] // S.Fake Egg Fusions, promotes Fakemon, then S.Fake Fusions
+  Fusion (+  {[pokemon]|[mythical]^2.5})^[eggtype == "cherish" ? 5 : 0] // Cherish Egg Fusions, promotes Mythical Fusions
+  Fusion (+  {[pokemon]^1.5|[ultrabeast]})^[eggtype == "beast" ? 5 : 0] // Beast Egg Fusions, promotes Reg. Pokemon but allows for U.B Fusions
+  Fusion (+  {[pokemon]|[legendary]})^[eggtype == "master" ? 5 : 0] // Master Egg Fusions, allows for Legendary fusions (no promotion)
+  Fusion (+ {[pokemon]|[premierfusion]})^[eggtype == "premier" ? 5 : 0] // Premier Egg Fusion, mildly promotes same-type fusions
+
+deltatypes
+  Normal
+  Fire
+  Water
+  Grass
+  Flying
+  Fighting
+  Poison
+  Electric
+  Ground
+  Rock
+  Psychic
+  Ice
+  Bug
+  Ghost
+  Steel
+  Dragon
+  Dark
+  Fairy
+
+deltanum
+  1^0.55
+  2^0.35
+  3^0.10
+
+eventtraits
+  [eventtraitlist.selectUnique(1).joinItems("+")]^0.75
+  [eventtraitlist.selectUnique(2).joinItems("+")]^0.20
+  [eventtraitlist.selectUnique(3).joinItems("+")]^0.05
+
+eventtraitlist
+  Jokester
+  Costumed
+  Cornucopia^[year > 2023 ? 1 : month >= 11 ? 1 : 0]
+  Lovestruck
+  Starbound
+  Shivering^1.75
+  Overgrown^1.75
+  Prism^1.75
+
+premierfusion
+  [premiermon.grasstype]^[petype=="grass"]
+  [premiermon.firetype]^[petype=="fire"]
+  [premiermon.watertype]^[petype=="water"]
+  [premiermon.bugtype]^[petype=="bug"]
+  [premiermon.normaltype]^[petype=="normal"]
+  [premiermon.fightingtype]^[petype=="fighting"]
+  [premiermon.flyingtype]^[petype=="flying"]
+  [premiermon.poisontype]^[petype=="poison"]
+  [premiermon.electrictype]^[petype=="electric"]
+  [premiermon.groundtype]^[petype=="ground"]
+  [premiermon.psychictype]^[petype=="psychic"]
+  [premiermon.rocktype]^[petype=="rock"]
+  [premiermon.icetype]^[petype=="ice"]
+  [premiermon.dragontype]^[petype=="dragon"]
+  [premiermon.ghosttype]^[petype=="ghost"]
+  [premiermon.darktype]^[petype=="dark"]
+  [premiermon.steeltype]^[petype=="steel"]
+  [premiermon.fairytype]^[petype=="fairy"]
+
+// Fusion rarity:
+// Ultra/Park/Fake > Beta/S.Fake > Others > Germlets
+
+monthday = [date().format("MM-DD")]
+month = [date().format("MM")]
+year = [date().format("YYYY")]
+date = {import:date-plugin}
+pride = {import:pride-plugin}

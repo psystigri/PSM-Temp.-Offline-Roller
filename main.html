@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>PSM Invite Roller</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <h1>
+      PSM Invite Roller
+    </h1>
+
+    <div id="resultsBox" class="center">
+
+      <div id="results1">
+      </div>
+      <div id="results2">
+      </div>
+      <div id="results3">
+      </div>
+      <div id="results4">
+      </div>
+      <div id="results5">
+      </div>
+
+    </div>
+
+    <hr>
+
+    <button onclick="createList('results1'); createList('results2'); createList('results3'); createList('results4'); createList('results5')">
+      Roll
+    </button>
+
+    <br><br>
+
+    <select id="inviteType">
+      <option value="gamble">Gamble Invite</option>
+      <option value="common">Basic Invite</option>
+      <option value="uncommon">Fancy Invite</option>
+      <option value="rare">Gilded Invite</option>
+      <option value="generic" selected>Generic Invite</option>
+      <option value="fusion">Fusion Invite</option>
+      <option value="fusionEX">Extreme Fusion Invite</option>
+    </select>
+
+    <hr>
+
+    <div style="display:flex; flex-wrap: wrap; justify-content: center;">
+
+      <textarea id="pokelist" spellcheck="false">
+        paste pokemon list here
+      </textarea>
+
+      <div>
+        <div id="color" class="traitList">
+          Basic, Colored, Shadow, Melanistic, Albino, Shiny
+        </div>
+
+        <div id="common" class="traitList">
+          Mini, Giga, Aura, Variant, Patches, Piebald, Spikey, Winged, Fluffy, Costumed, Invert, Toon, Royal
+        </div>
+
+        <div id="uncommon" class="traitList">
+          Fusion, Snacks, Mutated, Angelic, Demonic, Glowing, Terrarium, Overgrown, Gem, Familiar, Cloudy, Copycat, Splotches, Gilded Fracture, Nuclear, Statue, Eventide, Sketch
+        </div>
+
+        <div id="rare" class="traitList">
+          Delta(TYPE), Galactic, Seasonal, Toy, Alien, Glitch, Slime, Robotic, Prism, Joyous, Aquatic, Neoteny, Natatoric, ArtsNCrafts, Pixie, Sand Man, Sun-Touched, Wraith, Transparent, Tyrannian, Moon-Touched, Melancholic
+        </div>
+
+        <div id="types" class="traitList">
+          Normal, Fire, Fighting, Water, Flying, Grass, Poison, Electric, Ground, Psychic, Rock, Ice, Bug, Dragon, Ghost, Dark, Steel, Fairy
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
+<script src="scripts.js"></script>

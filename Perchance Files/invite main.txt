@@ -1,0 +1,279 @@
+// Note: Text that comes after "//" is ignored, which allows
+// you to write notes - like the one you're reading now!
+
+title
+  Pokemon: Summer Midnight
+
+output
+  [isFused=false,""][pokemon.selectMany(pokeamnt).joinItems("<br>")]
+
+pokemon
+  [line=removePluses(colorLine+""+traitLine),""]{[chosenmon]^[isFused==false]|[chosenmon]+[fusemon]^[isFused==true]}<span class="line"">/[line]</span>{✨^[s==1]|^[s==0]}[isFused=false,""]^[invite != "fusion" && invite != "fusionEX"]
+  [fusemon]<span class="line"">/[removePluses(colorLine+""+fuseLine)]</span>{✨^[s==1]|^[s==0]}^[invite == "fusion"]
+  [fusemon]<span class="line"">/[removePluses(colorLine+""+fuseLine+""+traitLine)]</span>{✨^[s==1]|^[s==0]}^[invite == "fusionEX"]
+
+pokeamnt
+  5^[mult.checked == false]
+  10^[mult.checked == true]
+
+chosenmon
+  // normal
+  [pokelist.regular.selectOne]^[invite != "fakemon" && invite != "paradox" && invite != "legendary" && invite != "fakemon" && invite != "everything" && invite != "elemental"]
+  // legendary
+  [pokelist.legendary.selectOne]^[invite == "legendary"]
+  // paradox
+  [pokelist.paradox.selectOne]^[invite == "paradox"]
+  // fakemon
+  [pokelist.fakemon.selectOne]^[invite == "fakemon"]
+  // elemental
+  [pokelist.elemental.selectOne]^[invite == "elemental"]
+  // everything
+  [pokelist.everything.selectOne]^[invite == "everything"]
+
+fusemon
+  // normal
+  [pokelist.regular.selectUnique(fusionAmnt).joinItems("+")]^[invite != "fakemon" && invite != "paradox" && invite != "fakemon" && invite != "legendary" && invite != "everything"]
+  // legendary
+  [pokelist.legendfusion.selectUnique(fusionAmnt).joinItems("+")]^[invite == "legendary"]
+  // paradox
+  [pokelist.parafusion.selectUnique(fusionAmnt).joinItems("+")]^[invite == "paradox"]
+  // fakemon
+  [pokelist.fakefusion.selectUnique(fusionAmnt).joinItems("+")]^[invite == "fakemon"]
+  // elemental
+  [pokelist.elemental.selectUnique(fusionAmnt).joinItems("+")]^[invite == "elemental"]
+  // everything
+  [pokelist.everything.selectMany(fusionAmnt).joinItems("+")]^[invite == "everything"]
+
+pokelist
+  regular=[pokelistRaw.regular.evaluateItem.split("|")]
+  legendary=[pokelistRaw.legendary.evaluateItem.split("|")]
+  paradox=[pokelistRaw.paradox.evaluateItem.split("|")]
+  fakemon=[pokelistRaw.fakemon.evaluateItem.split("|")]
+  elemental=[pokelistRaw.type.evaluateItem.split("|")]
+  // fusion only lists
+  parafusion=[(pokelistRaw.paradox + "|" + pokelistRaw.regular).evaluateItem.split("|")]
+  legendfusion=[(pokelistRaw.legendary + "|" + pokelistRaw.regular).evaluateItem.split("|")]
+  fakefusion=[(pokelistRaw.fakemon + "|" + pokelistRaw.regular).evaluateItem.split("|")]
+  // mixed
+  everything=[(pokelistRaw.fakemon + "|" + pokelistRaw.regular + "|" + pokelistRaw.paradox + "|" + pokelistRaw.legendary).evaluateItem.split("|")]
+
+pokelistRaw
+  regular=[ogList.pokemon.joinItems("|")]|[regional.joinItems("|")] // regular
+  legendary=[ogList.legendary.joinItems("|")]|[ogList.mythical.joinItems("|")]|[ogList.ultrabeast.joinItems("|")] // legendary etc
+  paradox=[paradox.joinItems("|")] // paradox
+  fakemon=[fakemonList.fakemon.joinItems("|")] // fakemon
+  // elemental
+  type
+    [ogList.premiermon.grasstype.joinItems("|")]|His.Voltorb^[invType == "grass"]
+    [ogList.premiermon.firetype.joinItems("|")]|Pal.Tauros|His.Growlithe^[invType == "fire"]
+    [ogList.premiermon.watertype.joinItems("|")]|Pal.Tauros|His.Basculin^[invType == "water"]
+    [ogList.premiermon.bugtype.joinItems("|")]^[invType == "bug"]
+    [ogList.premiermon.normaltype.joinItems("|")]|Alo.Rattata|Gal.Zigzagoon|His.Zorua^[invType == "normal"]
+    [ogList.premiermon.fightingtype.joinItems("|")]|Pal.Tauros|Gal.Farfetch'd|His.Sneasel^[invType == "fighting"]
+    [ogList.premiermon.flyingtype.joinItems("|")]^[invType == "flying"]
+    [ogList.premiermon.poisontype.joinItems("|")]|Pal.Wooper|His.Qwilfish|His.Sneasel^[invType == "poison"]
+    [ogList.premiermon.electrictype.joinItems("|")]|His.Voltorb^[invType == "electric"]
+    [ogList.premiermon.groundtype.joinItems("|")]|Alo.Diglett|Gal.Stunfisk|Gal.Yamask|Pal.Wooper^[invType == "ground"]
+    [ogList.premiermon.psychictype.joinItems("|")]|Gal.Ponyta|Gal.Slowpoke^[invType == "psychic"]
+    [ogList.premiermon.rocktype.joinItems("|")]|His.Growlithe^[invType == "rock"]
+    [ogList.premiermon.icetype.joinItems("|")]|Alo.Sandshrew|Alo.Vulpix|Gal.Darumaka^[invType == "ice"]
+    [ogList.premiermon.dragontype.joinItems("|")]^[invType == "dragon"]
+    [ogList.premiermon.ghosttype.joinItems("|")]|Gal.Corsola|Gal.Yamask|His.Zorua^[invType == "ghost"]
+    [ogList.premiermon.darktype.joinItems("|")]|Alo.Rattata|Alo.Meowth|Gal.Zigzagoon|His.Qwilfish^[invType == "dark"]
+    [ogList.premiermon.steeltype.joinItems("|")]|Alo.Sandshrew|Alo.Diglett|Gal.Meowth|Gal.Stunfisk^[invType == "steel"]
+    [ogList.premiermon.fairytype.joinItems("|")]^[invType == "fairy"]
+
+paradox
+  Great Tusk
+  Scream Tail
+  Brute Bonnet
+  Flutter Mane
+  Slither Wing
+  Sandy Shocks
+  Iron Treads
+  Iron Bundle
+  Iron Hands
+  Iron Jugulis
+  Iron Moth
+  Iron Thorns
+  Roaring Moon
+  Iron Valiant
+  Raging Bolt
+  Iron Crown
+
+regional
+  Alo.Rattata
+  Alo.Sandshrew
+  Alo.Vulpix
+  Alo.Diglett
+  Alo.Meowth
+  Alo.Geodude
+  Alo.Grimer
+  Gal.Meowth
+  Gal.Ponyta
+  Gal.Slowpoke
+  Gal.Farfetch’d
+  Gal.Corsola
+  Gal.Zigzagoon
+  Gal.Stunfisk
+  Gal.Darumaka
+  Gal.Yamask
+  His.Growlithe
+  Pal.Wooper
+  Pal.Tauros
+  His.Voltorb
+  His.Qwilfish
+  His.Sneasel
+  His.Basculin
+  His.Zorua
+
+colorLine=[reset][s=0,""][tA=traitAmnt.selectOne,""][sc=selectLeaf(color).evaluateItem][finalAmnt]
+traitLine=+[traits.common.selectUnique(com).joinItems("+")]+[traits.uncommon.selectUnique(unc).joinItems("+")]+[traits.rare.selectUnique(rar).joinItems("+")]
+fuseLine=+Fusion
+
+// STUFF
+finalAmnt=[extras][rarity.selectMany(tA)]
+
+extras
+  [com=com+1,""][tA=tA-1,""]^[invite == "common" && sc == "Shiny" ? 500 : 0]
+  [unc=unc+1,""][tA=tA-1,""]^[invite == "uncommon" ? 500 : 0]
+  [rar=rar+1,""][tA=tA-1,""]^[invite == "rare" && sc != "Shiny" ? 500 : 0]
+  [""]^[invite != "uncommon" && invite != "rare" && invite != "common" ? 500 : 0.01]
+
+rarity
+  [com=com+1,""]^[common]
+  [unc=unc+1,""]^[invite != "common" ? uncommon : 0]
+  [rar=rar+1,""]^[invite != "common" && invite != "uncommon" ? rare : 0]
+
+reset=[com=0,""][unc=0,""][rar=0,""]
+
+// LIKELIHOODS
+// other
+traitAmnt
+  0^[invite == "fusionEX" ? 0 : invite == "everything" ? 10 : 50]
+  1^30
+  2^15
+  3^[invite != "fusionEX" ? 05 : 0]
+
+fusionAmnt
+  // fusion invite
+  2^[invite == "fusion" || invite == "fusionEX" ? 70 : 0]
+  3^[invite == "fusion" || invite == "fusionEX" ? 20 : 0]
+  4^[invite == "fusion" || invite == "fusionEX" ? 10 : 0]
+  // other
+  1^[invite != "fusion" && invite != "fusionEX" ? 80 : 0]
+  2^[invite != "fusion" && invite != "fusionEX" ? 15 : 0]
+  3^[invite != "fusion" && invite != "fusionEX" ? 5 : 0]
+
+deltaAmnt
+  1^65
+  2^20
+  3^10
+  4^05
+
+// rarities
+common
+  53
+  100^[invite == "everything"]
+uncommon
+  0^[invite == "common"]
+  32^[invite != "common"]
+  100^[invite == "everything"]
+rare
+  0^[invite == "common" || invite == "uncommon"]
+  15^[invite != "common" && invite != "uncommon"]
+  100^[invite == "everything"]
+
+// TRAITS
+color
+  Basic^[invite != "everything" ? common*2 : common/2]
+  common^[common]
+    Colored
+    Shadow
+    Melanistic
+    Albino
+  rare^15
+    Shiny[s=1,""]
+
+traits
+  common^[common]
+    Mini
+    Giga
+    Aura
+    Variant
+    Patches
+    Piebald
+    Spiky
+    Fluffy
+    Winged
+    Costumed
+    Invert
+    Toon
+    Royal
+  uncommon^[uncommon]
+    Snacks
+    Fusion[isFused=true,""]^[invite == "fusionEX" ? 0 : 1]
+    Mutated
+    Angelic
+    Copycat
+    Splotches
+    Cloudy
+    Demonic
+    Glowing
+    Terrarium
+    Eventide
+    Sketch
+    Gem
+    Familiar
+    Gilded Fracture
+    Nuclear
+    Statue
+  rare^[rare]
+    Galactic
+    Neoteny
+    Seasonal
+    Delta([deltaTypes.selectUnique(deltaAmnt).joinItems("+")])
+    Toy
+    Alien
+    Glitch
+    Slime
+    Robotic
+    Prism
+    Wraith
+    Tyrannian
+    Transparent
+    Joyous
+    Aquatic
+    ArtsNCraft
+    Natatoric
+    Pixie
+    Sun-Touched
+    Moon-Touched
+    Sand Man
+
+deltaTypes
+  Normal
+  Fire
+  Water
+  Grass
+  Flying
+  Fighting
+  Poison
+  Electric
+  Ground
+  Rock
+  Psychic
+  Ice
+  Bug
+  Ghost
+  Steel
+  Dragon
+  Dark
+  Fairy
+
+selectLeaf = {import:select-leaf-plugin}
+ogList = {import:se-egg-hatching}
+fakemonList = {import:o88xfb7ib5}
+
+removePluses(input) =>
+  return input.replace(/\++/g, '+').replace(/^\+|\+$/g, '');
