@@ -1,0 +1,636 @@
+  Yin Yang Cookie - Applies Albino OR Melanistic
+  Energy Ball - Applies Aura
+  Paintbrush - Applies Colored
+  Kigurumi - Applies Costumed
+  Styling Gel - Applies Fluffy
+  Reverse Polarity Remote - Applies Invert
+  Drink Me Juice - Applies Mini or Giga
+  Black And White Patches - Applies Piebald or Patches
+  Relic Crown - Applies Royal
+  Dark Stone - Applies Shadow
+  Shaymin Quill - Applies Spiky
+  Old VHS - Applies Toon
+  Patterned Paper - Applies Variant
+  Costume Wings - Applies Winged
+  Piece of Cloud - Applies Cloudy
+  Pokemon Stencil - Applies Copycat
+  Evil Pitchfork - Applies Demonic
+  Old Collar - Applies Familiar
+  DNA Splicer - Applies Fusion
+  Fake Jewelry - Applies Gem
+  Glowing Paint - Applies Glowing
+  Molten Bowl - Applies Gilded Fracture
+  Misshapen Goldfish - Applies Mutated
+  Wild Mushroom - Applies Overgrown
+  Paint Bucket - Applies Splotches
+  Stone Slab - Applies Statue
+  Angel Feather - Applies Angelic
+  Shiny Charm - Applies Shiny
+  Sweet Treat - Applies Snacks
+  Glass Ball - Applies Terrarium
+  Fish Bowl - Applies Aquatic
+  UFO Keychain - Applies Alien
+  Clean Water - Applies Natatoric
+  An Energy card - Applies Delta (Random Type)
+  Space Dust - Applies Galactic
+  Error Message - Applies Glitch
+  Cute Sticker - Applies Joyous
+  Baby Blanket - Applies Neoteny
+  Opalite - Applies Prism
+  Wrench - Applies Robotic
+  Fallen Leaf  - Applies Seasonal
+  Plastic Container - Applies Slime
+  Small Tag - Applies Toy
+  Sundial - Applies Sun-Touched
+  "How to Draw" Book - Applies Sketch
+  Helix Fossil - Applies Tyrannian
+  Corruption Bloom - Applies Wraith
+  Sunset in a Bottle - Applies Eventide
+  X-Ray Machine - Applies Transparent
+  Love Potion - Applies Lovecore
+  Jack O Lantern - Applies Monstrous
+  Smeargle Brush - Applies ArtsNCrafts
+  Shooting Star Wand - Applies Pixie
+  Sweet Dreams - Applies Sand Man
+  Clown Horn - Applies Clown
+  Pride Flag - Applies Prideful
+  Fiery Pumpkin - Applies Cornucopia
+  A Small Star - Applies Yuletide
+  Dragon Fang - Applies Winged+Spikey+Delta (Dragon)
+  Goop - Applies Fusion (Ditto)
+  Shrek Doll - Applies Overgrown+Slime+Giga
+  Holy Bible - Applies Joyous+Angelic+Glowing
+  Mobius Strip - Apples Melanistic+Piebald OR Albino+Patches
+  Virus - Applies Robotic+Glitch+Demonic
+  Aquarium - Applies Aquatic+Terrarium
+  A Scrap of Paper That Says 'I can be ur Angle or Yuor Devil' - Applies Angelic+Demonic
+  Master Ball - Applies Fusion (Random Legendary)
+  Mr Spock Action Figure - Applies Alien+Galactic+Robotic
+  Depiction of a Biblically Accurate Angel - Applies Angelic+Mutated+Glowing
+  Professor Oak’s Pokedex - Applies Fusion (Starter)
+  Box of Crayons - Applies Prism+Seasonal
+  Battery - Applies Delta (Electric)+Glowing
+  Ash’s Cap - Applies Fusion (Pikachu)
+  Misty’s Bicycle - Applies Fusion (Staryu)
+  Brock’s Vest - Applies Fusion (Onix)
+  Pixie Dust - Applies Delta (Fairy)+Winged+Glowing
+  Aang’s Staff - Applies Delta (Fire+Water+Earth)
+  The Lorax’s Stump - Applies Delta (Grass+Flying)+Fluffy+Colored
+  McDonald’s Burger - Applies Snacks+Giga
+  Plain Cheerios - Removes every trait on a pokemon
+  American Flag - Applies Fusion (Braviary)
+  Black Hole - Applies Galactic+Mutated+Melanistic
+  Nerf Ball - Applies Fluffy+Fusion (Voltorb)
+  Titanic Shipwreck - Applies Aquatic+Delta (Water)+Fusion (Dhelmise)
+  Leafy’s Leaf - Applies Delta(Grass)+Fusion (Eevee)
+  4-Leaf Clover - Applies Seasonal+Aquatic
+  Money Printer - Applies Fusion (Meowth)
+  Bright Brown Bag - Applies Fluffy+Delta (Fire+Ground)
+  Idol of Amalgamation - Applies 4 random traits+Fusion (Random)
+  Palkia’s Heel - Applies Fusion (Salamence)
+  Triforce - Applies Colored+Variant+Mutated
+  Sparkling Bubble Wand - Applies Shiny+Aura (Bubbles)
+  Bundle of Sticks - Applies Spiky+Delta (Grass)
+  The Industrial Blender - Removes all traits+fusions then adds Slime
+  Chewed Glowstick - Applies Glowing+Delta (Fairy+Poison)
+  Haunted Paper Dolls - Applies Fusion (Baby Pokemon)+Delta (Ghost)
+  Salmon Icecream - Applies Aquatic+Snacks
+  Dachshund Plushie - Applies Familiar+Toy
+  Report Card - Applies Mini+Delta (Ghost)
+  2000’s Clip-On Tail - Applies Colored (Rainbow)+Variant (Checkerboard)+Aura
+  Flat Soda - Applies Snacks+Slime+Delta (Normal)
+  Kitty Whisker - Applies Shiny+Familiar
+  A Starbit - Applies Galactic+Glowing+Prism
+  Jar of Colorful Sand - Applies Aquatic+Delta (Ground)
+  Box of Butterflies - Applies Fusion (Butterfree)+Fusion (Beautifly)+Colored
+  Zebra Stripes - Applies Variant+Melanistic+Chimera (Albino)
+  Unopened Geode - Applies Fusion (Geodude)+Gem
+  Ball of Moss - Applies Overgrown (Moss)+Delta (Water+Grass)
+  Scorpion Lollipop - Applies Fusion (Scorupi)+Snacks+Delta (Bug)
+  Broken Color Wheel - Applies Colored+Prism+Glitch+Robotic
+  A Bag of Sea Glass - Applies Aquatic+Terrarium
+  An Emporium of Pokemon - Applies Fusion (Mudkip+Wimpod+Eevee)+Seasonal
+  A Cactus Flower - Applies Overgrown (Cactus)+Spiky+Seasonal
+  City Dandelion - Applies Fluffy+Joyous
+  Jarred Thunder - Applies Terrarium+Delta (Electric)
+  Coral Bits - Applies Fusion (Gal. Corsola)+Angelic
+  Metal Dust - Applies Aura+Delta (Fairy+Steel)
+  Sparkling Dinosaur Bone - Applies Fusion (Fossil Pokemon)+Glowing+Gem
+  An Orchid Mantis - Applies Mutated+Variant+Delta (Bug)
+  A Painted Red Rose - Applies Fusion (Smeargle)+Overgrown (Red Roses)+Delta (Normal)
+  A Painted Blue Rose - Applies Fusion (Smeargle)+Overgrown (Blue Roses)+Delta (Ghost)
+  A Painted Yellow Rose - Applies Fusion (Smeargle)+Overgrown (Yellow Roses)+Delta (Dark+Fairy)
+  Feather Duster - Applies Winged+Fluffy
+  Soap - Applies Snacks+Delta (Poison)
+  Rainbow Present Ribbon - Applies Colored (Rainbow)+Toy
+  LA Beach Water - Applies Slime+Glowing+Delta (Poison+Water)
+  Some Ants - Applies Fusion (Falinks)+Mini
+  Lo-Fi Livestream - Applies Robotic+Aura
+  Funny Green Rock - Applies Glowing (Green)+Gem+Delta (Ghost+Poison)
+  Strange Moonstone - Applies Alien+Gem+Mutated
+  Sunny Side Up Eggs - Applies Joyus+Piebald
+  Frozen Supernova - Applies Melanistic+Galactic+Delta (Ice+Psychic)
+  I’m not gonna be Mercy - Applies Angelic+Robotic
+  Fancy Monocle - Applies Familiar (Tuxedo Cat)
+  Hawk Talon - Applies Delta (Flying)+Familiar (Hawk, Eagle, or Falcon)
+  Reddit Logo - Applies Albino+Alien
+  Dentures - Applies Fusion (Mawile+Guzzlord)
+  Falconry Glove - Applies Fusion (Talonflame)+Delta (Flying+Fighting)
+  Pocket Watch - Applies Fusion (Hypno)+Delta (Psychic)
+  Toof - Applies Fusion (Zubat)
+  Chocolate Coin - Applies Fusion (Gimmighoul)+Snacks
+  Fallen Star - Applies Galactic+Fusion (Jirachi)
+  Charged Balloon - Applies Fluffy+Delta (Electric)
+  Scrub Daddy - Applies Joyous+Aquatic+Familliar (Sponge)
+  Super Mushroom - Applies Shiny+Giga+Fusion (Shroomish)
+  Two Toned Bear Hairpin - Applies Albino+Chimera (Melanistic)
+  Pancake - Applies Fusion (Stunfisk)
+  Participation Award - Applies Fusion (Charcadet, Armarouge, OR Ceruledge)+Shiny
+  Dr Doofenshmirtz’s Self Destruct Button - Applies Fusion (Voltorb)
+  A Painting (Starry Night) - Applies Fusion (Smeargle)+Galactic
+  A Painting (Sunflowers) - Applies Fusion (Smeargle+Sunflora)
+  A Painting (The Potato Eaters) - Applies Fusion (Smeargle+Dugtrio)+Snacks (Potato)
+  Everlasting Gobstopper - Applies Fusion (Ferroseed)+Spiky+Colored (Rainbow)+Snacks
+  Mega Blocks - Applies Toy+Joyous
+  Earplugs - Applies Fusion (Whismur)
+  Megaphone - Applies Fusion (Loudred)
+  Chew Toy - Applies Toy+Snacks
+  Experimental DNA Splicer - Applies Fusion (3 Random Pokemon)+Glitch
+  Pikachu Cosplay -  Applies Fusion (Mimikyu)
+  Spiny Shell - Apply Spiky/Fusion (Squirtle)
+  Wither Rose - Applies Melanistic+Overgrown (Rose)+Delta (Grass+Poison+Dark)
+  Inspekta's Hat - Applies Mutated (Long body and extra hands)
+  King's Megapon - Applies Aura (Speech bubbles)+Mutated (Extra eyes OR no eyes)
+  The Faceless - Applies mutated (No face)+variant (Question marks and socks)
+  The Error - Applies fusion (Galvantula)+Glitched+Mutated (One eye)
+  The Janitor - Applies Overgrown (Mushroom)
+  The Inn - Applies Fusion (Choose ONE of the following Pokémon, Buizel, Alcremie, Espeon, Marowak, Honedge, Mimikyu)
+  Simba Doll - Applies Fusion (Litleo)+Variant (Half-Circle on Forehead)
+  WALL-E - Applies Fusion (Any Past Paradox Pokemon)+Robotic+Delta (Ground)
+  EVE - Applies Fusion (Any Future Paradox Pokemon)+Robotic+Delta (Flying)
+  Smiley Yellow Mug - Applies Fusion (Sinistea)+Joyous
+  Supermassive Black Hole - Applies Shadow+Galactic+Delta (Dark)+Alien
+  Paw Shaped Dog Tag - Applies Fusion (Rockruff or Lycanroc)
+  Magnet - Applies Fusion (Plusle or Minun)
+  32 Tesla Superconducting Magnet - Applies Fusion (Plusle+Minun)
+  Boxing Glove - Applies Fusion (Kangaskhan)+Delta (Fighting)
+  Australian Flag - Applies Fusion (Kangaskhan+Galvantula+Komala)
+  Reaper’s Scythe - Applies Fusion (Duskull)+Delta (Ghost+Dark)
+  French Flag - Applies Fusion (Croagunk)
+  Medkit - Applies Fusion (Chansey)
+  Nurse Joy’s Hat - Applies Fusion (Blissey)
+  Officer Jenny's Hat - Applies Fusion (Growlithe)
+  A Pile of Ash - Applies Fusion (Cyndaquil)
+  A Pile of Dust - Applies Fusion (Sandshrew)
+  Amethyst Ring - Applies Fusion (Cosmoem)
+  I Just Wanna Be Part of Your Symphony - Applies Fusion (Finizen)+Delta (Water)+Prism+Glowing+Aura (Sparkles)
+  Can of Whipped Cream - Applies Delta Flying+Fluffy
+  Chipped Plant Pot - Applies Gilded Fracture+Terrarium
+  Dark Red Pepper - Applies Invert+Joyous+Delta (Fire)
+  Bag of Spray Paint - Applies ArtsNCrafts+Splotches
+  Firework Rocket - Applies Prism+Glowing+Delta (Electric)
+  Trash Bag - Applies Fusion(Trubbish)
+  Dual Sided Mirror - Applies Fusion(Girafarig)
+  A Pile of Leaves - Applies Seasonal+Overgrown
+  Fighting Glove - Applies Delta (Fighting)
+  A Pile of Snow - Applies Seasonal+Delta (Ice)
+  A Pile of Sand - Applies Seasonal+Delta (Ground)
+  A Pile of Flowers - Applies Seasonal+Delta (Grass)
+  A Pile of Rocks - Applies Seasonal+Delta (Rock)
+  A Pile of Water - Applies Seasonal+Delta (Water)
+  A Pile of Fire - Applies Seasonal+Delta (Fire)
+  A Pile of Lightning - Applies Seasonal+Delta (Electric)
+  Get Outta My Swamp - Applies Overgrown+Slime+Giga+Delta(Water+Grass+Poison)
+  Flowered Collar - Applies Familiar+Overgrown
+  Flower Bookmark - Applies Colored+Variant(Flowers)+Overgrown
+  Damp Matchbox - Applies Delta(Fire+Water)
+  Dirty Toy Animal - Applies Familiar+Toy+Delta(Ground)
+  Infested Stone - Applies Delta(Rock+Bug)+Mini
+  Rabbit's Foot - Applies Fusion (Azumarill, Buneary, Bunnelby, OR Scorbunny)
+  “Our Collective Eyes” Manuscript - Apples Mutated (Eyes all over body)
+  Plague Mask - Applies Fusion(Spritzee)+Delta(Poison) 
+  Blue Lobster Jumpscare - Applies Fusion(Corphish)+Colored(Blues)
+  A sign that reads ’The More You Know’ - Applies Fusion (Minior) + Aura(Comet Trail)
+  A Weird Cat Outside - Applies Fusion (Gal.Meowth)+Fluffy
+  Giant Enemy Spider - Applies Fusion(Ariados, Galvantula, Araquanid OR Spidops)+Giga
+  Small Enemy Spider - Applies Fusion(Spinarak, Joltik, Dewpider OR Tarountula)+Mini
+  Swirly Lollipop - Applies Fusion(Spinda)+Colored
+  A Lonely Bone  - Applies Fusion(Cubone)+Delta(Ghost)
+  A Skull - Applies Fusion(Marowak)+Delta(Ghost)
+  A Pile of Scales - Applies Fusion(Dratini)
+  Broken Heart - Applies Lovecore+Natatoric+Mutated
+  Handbook for the Recently Deceased - Applies Fusion(Drifblim)
+  Cassette Tape of the Original Spider-Man 1967 TV Series - Applies Fusion(Ariados)+Clown
+  A Painting (The Scream) - Applies Fusion(Duskull+Spiritomb)
+  A Painting (Water Lillies) - Applies Shiny+Fusion (Lotad+Florges)
+  Munch: A Retrospective Pokemon Card Set - Adds Fusion(Psyduck, Eevee, Pikachu, Mimikyu, OR Rowlet)
+  A Painting (The Avenue in Rain) - Applies Fusion(Braviary)+Delta(Water)
+  Bohemian Rhapsody Record - Applies Delta(Rock)+Prideful
+  Sweatband - Applies Fusion(Machop)
+  Vanilla Ice Cream - Applies Fusion(Vanillite+Vanillish+Vanilluxe)
+  Colouring Book - Applies Albino+ArtsNCrafts
+  Bottom Text - Applies Clown+Fusion(Mime Jr)
+  Oreo - Applies Fusion(Alcremie+Tirtouga)+Snacks
+  Elefun™️  - Applies Fusion (Phanpy OR Cufant)+Toy
+  Bomb Pop - Applies Snacks (Popsicle)+Delta(Fire)
+  Traffic Cone - Applies Fusion(Beartic)
+  A Painting (A Sunday Afternoon on the Island of La Grande Jatte) - Applies Fusion(Leavanny+Castform (Sunny Form))
+  A Painting (Bathers at Asnières) - Applies Fusion (Spidops+Weezing)
+  Worm on a String - Applies Fusion(Orthworm)+Fluffy+Toy
+  Pebble - Applies Fusion(Geodude)
+  Rock - Applies Fusion(Graveller)
+  Boulder - Applies Fusion(Golem)
+  T-Shirt Cannon - Apples Fusion(Dragapult, Blastoise, OR Alo.Golem)+Costumed
+  I'm a Fish - Applies Fusion (Staryu+Frillish+Magikarp)+Aquatic
+  Kung Fu Panda - Applies Fusion (Pancham)+Delta (Fighting)
+  Who may cry? - Applies Colored+Demonic+Gilded Fracture
+  Wallflower - Applies Fusion(Glimmora)
+  Nestor’s Antler - Applies Mutated(Antlers)+Aura(Floating Eyes)
+  Incredibile - Applies Delta(Fighting)+Giga
+  Elasticycle - Applies Toy(Made of Rubber)
+  Frozone’s Supersuit - Applies Delta(Ice)+Costumed(Arctovish)
+  Litches Skull - Applies Monstrous (Skeleton/bones)
+  Silver Bullet - Applies Monstrous (Werewolf)
+  Vampire Teeth - Applies Monstrous (Vampire)
+  Frankenstein's Bolts - Applies Monstrous (Frankenstein's Monster)
+  Rotten Flesh - Applies Monstrous (Zombie)
+  Cheap Souvenir - Applies Terrarium (Snowglobe)
+  Green Shell - Applies Fusion(Squirtle)+Shiny
+  Red Shell - Applies Fusion(Shuckle)
+  Blue Shell - Applies Fusion(Shuckle)+Shiny
+  Mysterious Fossil -  Applies Fusion (Random Fossil Pokemon)
+  Bepis - Applies Fusion(Fidough)+Familliar(Shiba Inu)
+  3D Printer - Applies Toy(3D Printed (Articulated Limbs/Body))
+  Peace Lily - Applies Fusion(Shaymin)
+  Bright Mallow Flower - Applies Fusion(Entei)+Mutated(Antlers)
+  Unpretentious White Lily - Applies Fusion(Politoed), Delta(Grass+Water)
+  Delicate Red Anemone - Applies Fusion(Rowlet)+Mini
+  Fennel Flower - Applies Fusion(Tauros)+Giga
+  Heliotrope - Applies Fusion(Cutiefly)+Mini
+  Rue Flowers - Applies Fusion(Torchic+Serperior)
+  Striking Saffron - Applies Fusion(Noivern)
+  Rough Cypress - Applies Fusion(Stoutland OR Mabosstiff)
+  Borage Flower - Applies Fusion (Pyroar)+Melanistic+Galaxy
+  Red Poppy - Applies Fusion(Noctowl+Meloetta)
+  Delicate Asphodel - Applies Fusion(Sawsbuck)
+  Red Dahlia - Applies Fusion(Mightyena+Gurdurr)
+  Tiger Lily - Applies Fusion(Tangela+Butterfree)+Glowing+Aura(Glowing Butterflies)
+  Fly Agaric Mushroom - Applies Fusion(Foongus)+Mutated(An Extra Set of Arms)+Toy
+  Simple Oxeye Daisy - Applies Fusion(Dragonair)+Overgrown+Delta(Grass)
+  Daffodil - Applies Fusion(Delcatty+Espurr)+Glowing
+  Glory-of-the-Snow - Applies Fusion(Honchkrow+Ampharos)+Glowing
+  Duff Beer - Applies Radioactive+Joyous
+  Wolf in Sheep's Clothing - Applies Fusion (Lycanroc)+Costumed (Wooloo)
+  Fallout Survival Guide - Applies Mutated+Radioactive
+  Double Trouble Bubble - Applies Fusion (Tandemaus)
+  Happy Meal Toy - Applies Toy+Mini+Joyous 
+  Santa's List - Applies Fusion (Delibird)+Delta (Ice)
+  Broken Hearted Love Letter - Applies Lovecore+Melanistic
+  Old Kaiju Movie - Applies Giga, Monstrous+Radioactive
+  Monkey's Paw - Applies Fusion (Pansage OR Pansear OR Panpour)
+  Racing Saddle - Applies Fusion (Ponyta)+Giga
+  Mood Ring - Applies Coloured+Prism
+  Canadian Flag - Applies Fusion(Ting-Lu)+Fluffy+Familiar(Moose)
+  Bottle of Everlasting Darkness - Applies Demonic+Shadow+Wraith
+  Colorful Pole - Applies Toy (Carousel animal)
+  Honeycomb Chunk - Applies Fusion (Combee or Durant)+Slime
+  Theater Mask - Applies Joyous+Melancholic
+  Spiders In Your Favorite Shoes - Applies Costumed+Mutated(extra legs + eyes)+Spiky (by mouth)
+  Old Horse Shoe - Applies Fusion (Rapidash)
+  Pristine Horse Shoe - Applies Fusion (Gal.Rapidash)
+  Rusty Horse Shoe - Applies Fusion (Mudsdale)
+  Copper Horse Shoe - Applies Fusion (Zebstrika)
+  Regal Horse Shoe - Applies Fusion (Keldeo)
+  Ghostly Horse Shoe - Applies Fusion (Spectrier)
+  Frozen Horse Shoe - Applies Fusion (Glastrier)
+  Once Upon A December - Applies Royal+Glowing+Delta(Ice)
+  Cow Print - Applies Piebald+Invert
+  Marshmallow Chick - Applies Colored(Pastels)+Fusion(Togepi)
+  Hand Mirror - Applies Copycat+Royal
+  Not a Mimikyu Badge - Applies Costumed(Pikachu)
+  Plastic Dinosaur - Applies Toy+Tyrannian
+  Plastic Spider Ring - Fusion(Spinarak)+Toy
+  Pom-Pom Balls - Applies Fusion(Venonat)+Alien
+  Rainbow Stone - Applies Fusion(Eeveelution)
+  Scented Slime - Applies Slime+Snacks(Fruits)
+  Unused Game Item -  Applies Fusion(Porygon)+Glitch
+  Chorus Fruit - Applies Melanistic+Aura(Enderman Particles)
+  Ghast Tear - Applies Albino+Fusion(Frillish)
+  Astral Ore - Applies Delta(Steel+Fire)+Eventide
+  Bloodstone - Applies Demonic+Moon-Touched
+  Glowing Mushroom - Applies Fusion (Paras, Shroomish, Foongus, Morellul, OR Toedscool)+Glowing
+  Plantera Bulb - Applies Delta(Grass)+Overgrown+Monstrous
+  Rotting Chunk - Applies Mutated(Extra Eyes)+Spikey+Delta(Poison)
+  Unicorn Horn -  Applies Fusion(Gal. Ponyta)+Pixie
+  Vertebra - Applies Fusion(Marowak OR Houndoom)+Demonic
+  Eye Bone - Applies Fusion(Trapinch)+Fluffy+Spikey
+  Sacrificial Lamb - Applies Fusion(Wooloo OR Mareep)+Demonic+Monstrous+Aura(Crown)
+  Water Stone Shard - Applies Fusion (Vaporeon)
+  Fire Stone Shard - Applies Fusion (Flareon)
+  Thunder Stone Shard - Applies Fusion (Jolteon)
+  Well Loved Ribbon - Applies Fusion (Sylveon)
+  Chunk of an Icy Rock - Applies Fusion (Glaceon)
+  Chunk of a Mossy Rock - Applies Fusion (Leafeon)
+  Broken Clock - Applies Fusion (Umbreon OR Espeon)
+  Cracked Mega Stone - Applies Fusion (Random Mega Pokemon)
+  Angle on your shoulder - Applies Angelic+Mini
+  Devil on your Shoulder - Applies Demonic+Mini
+  Fiery Down - Applies Delta(Fire+Flying)+ Aura(Embers)
+  Rusty Commemorative Coin - Applies Fusion(Tauros, Pal.Tauros OR Bouffalant)+Delta(Fire+Steel)+Gilded Fracture
+  Space-Time Globe - Applies Galactic+Giga+Aura+Fusion (Arceus)
+  Terra Cymbal - Applies Delta(Ground)+Statue+Fusion(Groudon) 
+  Fiery Drum - Applies Delta(Fire)+Eventide+Fusion(Heatran) 
+  Icy Flute - Applies Delta(Ice)+Prism+Fusion(Articuno) 
+  Aqua-Monica - Applies Delta(Water)+Aquatic+Fusion(Kyogre) 
+  Rock Horn - Applies Delta(Rock)+Demonic+Fusion(Giratina) 
+  Grass Cornet - Applies Delta(Grass)+Overgrown+Fusion(Mew) 
+  Sky Melodica - Applies Delta(Flying)+Cloudy+Fusion(Rayquaza) 
+  Worm of Chaos - Applies Fusion(Orthworm)+Overgrown(Trees and moss)+Giga+Aura(Crown)
+  Frog of Famine - Applies Fusion(Seismitoad)+Coloured(Shades of Red)+Variant(Eyes)+Giga+Aura(Crown)
+  Squid of Pestilence - Applies Fusion(Tentacruel)+Mutated(4 Arms)+Giga+Aura(Crown)
+  Spider of War - Applies Fusion(Ariados OR Araquanid)+Mutated(Centaur)+Giga+Aura(Crown)
+  The One Who Waits - Applies Fusion(Meowscarada)+Melanistic+Delta(Ghost)+Monsterous+Giga+Aura(Eyes)
+  Guardians of Death - Applies Fusion(Maushold+Purrloin)+Melanistic+Demonic
+  The GOAT - Applies Fusion(Skiddo)+Demonic+Monsterous+Aura(Crown)
+  The Fortune Teller - Applies Fusion(Murkrow)+Delta(Psychic)+Overgrown(Leaves)+Giga
+  The Blacksmith - Applies Fusion(Talonflame)+Coloured(Black and Yellow Shades)+Giga
+  The Collector - Applies Fusion(Hoothoot)+Delta(Ghost)+Mutated(No Legs)+Giga
+  Midnight Trickster - Applies Fusion(Thievul)+Demonic+Delta(Dark)
+  Mother of the Flock - Applies Fusion(Dubwool)+Variant(Snowflakes)+Spiky+Mutated(Two seta of ears)+Delta(Ice)+Giga
+  Fairy King - Applies Pixie+Royal
+  Trixie Pixie - Applies Pixie+Clown
+  Not the Gumdrop Buttons - Applies Snacks(Gingerbread)
+  Iron Fillings - Applies Fusion(Alo.Geodude OR Sandy Shocks)
+  Never-Melt Ice - Applies Fusion(Bergmite)
+  Adamant Orb - Applies Fusion(Dialga)
+  Lustrous Orb - Applies Fusion(Palkia)
+  Griseous Orb - Applies Fusion(Giratina)
+  Jade Orb - Applies Fusion(Rayquaza)
+  Blue Orb - Applies Fusion(Kyogre)
+  Red Orb - Applies Fusion(Groudon)
+  Mouse Balloons - Applies Delta(Flying)+Fusion(Pikachu)
+  Mouse Surfboard - Applies Delta(Water)+Fusion(Pikachu)
+  Black Sludge - Applies Fusion(Grimer)
+  Canari Bread - Applies Fusion(Tynamo)
+  Clear Bell - Applies Fusion(Ho-oh or Suicune)
+  Salt Shaker - Applies Fusion(Nacli)
+  Deep Sea Scale - Applies Fusion(Gorebyss)
+  Deap Sea Tooth - Applies Fusion(Huntail)
+  Dragon Skull - Applies Delta(Dragon)+Winged
+  Dubious Disc - Applies Fusion(PorygonZ)
+  Electirizer - Applies Fusion(Electivire)
+  Magmarizer - Applies Fusion(Magmortar)
+  Enigma Stone - Applies Fusion(Latias OR Latios)
+  Fluffy Tail - Applies Fusion(Skitty)+Fluffy
+  Galarica Twig - Applies Fusion(Gal.Slowbro OR Gal.Slowking)
+  Ogre Masks - Applies Fusion(Ogrepon)
+  Intriguing Stone - Applies Fusion (Mega Pidgeot)
+  Ketchup - Applies Fusion(Any Pikachu and Clone)+Snacks
+  Leek - Applies Fusion(Farfetch'd OR Gal.Farfetch'd)
+  Leader's Crest - Applies Fusion(Kingambit)
+  Dark Stone - Applies Fusion(Zekrom)
+  Light Stone - Applies Fusion(Reshiram)
+  Lunar Feather - Applies Fusion(Cresselia)
+  Meteorite - Applies Fusion(Deoxys)
+  MochiMochi - Applies Fusion(Pecharunt)
+  Peat Block - Applies Fusion(Ursaluna)
+  Prism Scale - Applies Fusion(Milotic)
+  Protector - Applies Fusion(Rhyperior)
+  Reaper Cloth - Applies Fusion(Dusknoir)
+  Rusted Shield - Applies Fusion(Zamazenta)
+  Rusted Sword - Applies Fusion(Zacian)
+  Delicious Sandwich - Applies Fusion(Miraidon OR Koraidon)
+  Suspicious Apple - Applies Fusion(Applin)
+  Twisted Spoon - Applies Fusion(Alakazam)
+  Wooden Crown - Applies Fusion(Calyrex)
+  Atari's E.T. - Applies Alien+Glitch
+  Bag of Jellybeans - Applies Colored+Toon+Snacks(Jellybeans)
+  Beginner's Guide to Birdwatching - Applies Fusion(Watchog)+Winged+Cloudy
+  Hourglass - Applies Sand Man+Terrarium
+  Newspaper Clipping - Applies Winged+Monstrous(Mothman)
+  Unfinished Sketch - Applies Fusion(Smeargle OR Grafaiai)+Chimera(Sketch)
+  Lemon Slice - Applies Colored(Yellows)+Variant+Overgrown(Lemon Tree)
+  Sweet Tooth - Applies Terrarium+Snacks(Candy) 
+  A Ten Foot Tall Yard Stick - Applies Variant+Giga+Costumed(Any Pokemon, Must have socks)
+  Maxim Tomato - Applies Coloured(Reds)+Fusion(Jigglypuff)
+  Bat Signal - Applies Fusion(Zubat, Noibat OR Woobat)+Glowing
+  Half-Eaten Donut? - Applies Fusion(Hoopa)+Mini
+  Overcooked Chicken Nugget - Applies Melanistic+Fusion(Torchic)
+  Hand of Midas - Applies Statue+Gilded Fracture
+  Fluorescent Lamp - Applies Melanistic+Glowing(Teal)+Fusion(Sharpedo)
+  Ardent Flower - Applies Fusion(Frosmoth)+Delta(Fire+Bug)+Aura(Embers)
+  Skeletal Crumbs - Applies Fusion(Marrowk)+Transparent
+  Oil-gunked Spanner - Applies Slime(Green)+Spiky+Fusion(Crustle, Kingler OR Crawdaunt)
+  Cetacean Heart - Applies Albino+Fusion(Wailord OR Cetitan)
+  Miniature Telepole - Applies Colored(Purples+Blacks)+Fusion(Lycanroc)+Delta(Electric+Dark)+Fluffy+Aura(Lightning)
+  Blood Orange - Applies(Zubat, Noibat OR Woobat)+Monstrous
+  Shiny Bat Wing - Applies Melanistic+Fusion(Lunala)+Monstrous
+  Pavlova - Appplies Fusion(Alcremie)+Snacks(Fruit)
+  Fairy Bread - Applies Colored+Splotches(Rainbow)+Fusion(Fidough)
+  Grimy Scarf – Applies Fusion(Grimer)+Delta(Poison)+Slime
+  Kangaskhan Rock – Applies Fusion(Kangaskhan)+Statue
+  Metal Powder – Applies Fusion(Ditto)+Slime
+  Quick Powder – Applies Fusion(Ditto)+Slime+Shiny ✨
+  Huge Bow – Applies Fusion (Wailord)+Delta(Water)+Giga
+  Cacturne Hat – Applies Fusion (Cacturne)+Delta(Grass+Dark)+Spikey
+  Cloud Ruff – Applies Fusion (Altaria)+Delta(Normal+Flying)+Cloudy
+  Lunaton-Torc – Applies Fusion (Lunatone)+Delta(Rock+Psychic)+Moon-Touched
+  Solrock Bow – Applies Fusion (Solrock)+Delta(Rock+Psychic)+Sun-Touched
+  Perish Torc – Applies Fusion (Absol)+Delta(Dark)+Patches+Piebald
+  Burning Daylight - Applies Eventide+Wraith
+  Softly Glowing Salt-Lamp - Applies Gem(Salt Crystals)+Glowing
+  PJ Party! - Applies Costumed+Snacks+Fluffy+Sand Man
+  Cat Nap - Applies Familiar(Cat, Wild or Domesticated)+Sand Man
+  Holy Whisp - Applies Angelic+Wraith
+  Tar Pit - Applies Tyrannian+Slime+Transparent
+  Steel Horse -  Applies Fusion(Cyclizar, Varoom, Rapidash OR Mudsdale)+Robotic
+  Flaming Tar Pit - Applies Tyrannian+Slime+Transparent+Wraith
+  Where are my arms?! - Applies Delta(Dragon)+Spiky+Fluffy+Mutated (No Arms)
+  Dawn of the Dinosaurs -  Applies Eventide+Tyrannian+Fluffy+Spiky+Giga(or Mini)
+  Teal Mask - Applies Costumed(Ogerpon)+Delta(Grass)
+  Wellspring Mask - Applies Costumed(Ogerpon)+Delta (Grass+Water)
+  Hearthflame Mask - Applies Costumed(Ogerpon)+Delta(Grass+Fire)
+  Cornerstone Mask - Applies Costumed(Ogerpon)+Delta (Grass+Rock)
+  Transient Blue Scarf - Applies Colored(Blues+Greys)+Fusion(Serperior OR Milotic)
+  Aurum Amber - Applies Colored(Blacks+Yellows)+Royal+Gilded Fracture+Gem(Amber)
+  Sword of a Forgotten Knight - Applies Colored(Blacks+Blues)+Galactic+Spiky
+  Magical Girl's Wand - Applies Colored(Pinks+White)+Lovecore+Winged+Fusion(Seviper)
+  Cracked Jade - Applies Slime(Green)+Gem(Jade)+Monstrous(Dragon)
+  Ancient Effigy - Statue+Winged+Mutated(No Head)
+  Ragged Umbrella - Applies Familiar(Fox)+Overgrown(Moss)+Fluffy
+  Ebony Brooch - Applies Royal+Overgrown(Vines)
+  Fountain of Youth - Applies Neoteny+Natatoric
+  Fruit Gummies - Applies Snacks+Splotches
+  Sextant - Applies Natatoric+Sun-Touched
+  Toaster Pastry - Applies Snacks(Poptarts)+Aura(Rainbow Trail)
+  Z-Fighting Textures - Applies Glitch+Prism
+  Karma Flower - Applies Gilded Fracture+Aura(Falling Petals)+Delta(Ghost)
+  Tarr Plort - Applies Colored+Slime+Wraith+Giga
+  Sunglasses – Applies Fusion(Gengar)+Delta(Ghost+Poison)+Wraith
+  Drowzee Tie – Applies Fusion(Drowzee)+Delta (Psychic)+Sand Man
+  Clinging Bow – Applies Fusion (Tangrowth)+Delta (Grass)+Overgrown
+  Old Brooch – Applies Fusion (Aerodactyl)+Delta (Rock+Flying)+Tyrannian
+  Wool Bow – Applies Fusion (Mareep)+Delta (Electric)+Fluffy
+  Lava Bow – Applies Fusion (Slugma)+Delta (Fire)+Slime(Lava)
+  Rainbow Veil – Applies Fusion (Ho-Oh)+Delta (Fire+Flying)+Prism
+  Wave Jewel – Applies Fusion (Phione)+Aquatic
+  Ripple Cape – Applies Fusion (Phione)+Natatoric
+  Marine Cache – Applies Delta (Water)+Natatoric+Aquatic
+  Bugsnax - Applies Delta(Bug)+Snacks
+  Alpha's Fur - Applies Familiar+Giga
+  Toxic Chain - Applies Fusion(Okidogi OR Munkidori OR Fezandipiti)
+  Dog Day - Applies Familiar(Any Dog Species)+Sun-Touched
+  Neon Sign - Applies Wraith+Glowing+Robotic
+  Blue Fruit - Applies Fusion(Any Coccoon/Chrysalis Pokemon)+Snacks(Fruit)
+  Batflies - Applies Fusion(Zubat OR Noibat OR Woobat OR Gligar)+Delta(Bug)
+  Glow Weed - Applies Delta(Grass)+Glowing
+  Half-Eaten Puffball - Melancholic+Fluffy
+  Doomsday Radio - Applies fusion (Absol)
+  Spear of Longinus (Alternatively: Eva) - Applies Angel+Robotic+Giga
+  Thorn Ring - Applies Delta (Ice)+Fusion (any deer pokemon)
+  A Rose by any other Name - Applies Fusion (Roselia or Roserade)
+  Conversation Hearts - Applies Lovecore+Delta (Fairy)+Snacks
+  Glitch in the Matrix - Applies Glitch+(Porygon Line)
+  Tear Gas - Applies fusion (Spectreon)+Delta (Poison)
+  Inhibitor Ring - Applies Delta (Dark)+fusion (Shaymin or Sandslash or Togedemaru)
+  Wizard's Hat - Applies fusion (Delphox or Mismagius or Gal.Slowking)
+  Flame Staff - Applies Fusion(Meg.Emboar)
+  Draconic Hood - Applies Fusion(Meg.Feraligatr)
+  Flower Wreath - Applies Fusion(Meg.Meganium)
+  Tank Shell - Applies Fusion(Meg.Blastoise)
+  Tattered Wing - Applies Fusion(Meg.Charizard X OR Meg.Charizard Y)
+  Giant Flower - Applies Fusion(Meg.Venusaur)
+  Cracked Gill - Applies Fusion(Meg.Swampert)
+  Burnt Feather - Applies Fusion(Meg.Blaziken)
+  Explosive Tree - Applies Fusion(Meg.Sceptile)
+  Infinite Paths - Applies Fusion(Eevee)+Delta(Random)
+  Moth Ball - Applies Fusion (Random Lepiva Evolution)
+  Advent Calendar - Applies Yuletide+Seasonal
+  Bat Wrapped in a Leaf - Applies Fusion(Snobat)+Overgrown
+  Cupid's Bow - Applies Lovecore+Neoteny+Angelic
+  Jar of Fireflies - Applies Pixie+Glowing
+  Scarecrow - Applies Cornucopia+Delta (Grass+Ghost)
+  Snug Bug in a Rug - Applies Delta (Bug)+Sand Man
+  Tidal Bell - Applies Fusion (Lugia)
+  Bad Pop-Up Ad - Applies Glitch+Mutated+Aura
+  Haunted Tome - Applies Sketch+Delta (Ghost)
+  Leviathan Scale - Applies Aquatic+Spiky+Delta (Dragon)
+  Saber Tooth -  Applies Tyrannian+Fluffy+Delta (Rock)
+  A Fancy Wig - Applies Colored+Fluffy+Aura
+  Reveal Glass - Applies Fusion (Thundurus, Tornadus, Landorus or Enamorus)
+  Fractal Frozen Pond - Applies Chimera(Delta Ice)
+  Ripple Effect -  Applies Chimera(Random Trait+ Gilded Fracture)
+  Uma's Shoe - Applies Fusion(Random Horse Pokemon)
+  Bracken's Flower - Applies Spikey+Overgrown+Mutated+Monstrous
+  Divorce Papers - Removes all fusions and applies Melancholic
+  Corrupted Art File - Applies Sketch+Glitch
+  Undo Button - Removes all traits and applies Sketch
+  VHS titled "How To Be Normal" - Removes all traits and applies Delta(Normal)
+  Hairstylist Kit - Applies Fusion (Furfrou)
+  A Suspicious Pawprint - Removes all non-color traits and adds Fusion (Nickit)
+  Darkened Feather - Applies Shadow+Fusion(Lugia)
+  Charred Salmon -  Applies Aquatic+Delta(Fire)
+  Cracked Fossil -  Applies Tyrannian+Transparent+Delta(Rock)
+  Tasty Taiyaki - Applies Aquatic+Snacks+Fusion(Magikarp)
+  Long May She/He/They Reign - Applies Royal+Aura+Angelic
+  Ledyba's Lost Dots - Applies Variant(Dots)+Colored+Delta(Bug)
+  It's not a phase!! - Applies Fusion(Meg.Absol OR Meg.Meowstic OR Meg.Staraptor)+Fluffy
+  Ever Lasting Flame - Applies Fusion (Chandelure)+Aura 
+  Here Fishy Fishy - Applies Fusion(Random Fish Pokemon)+Aquatic 
+  Towers Curse - Applies Statue+Clown+Overgrown(Roses)
+  Tower Rulers - Applies Aura(Eyes)+Monstrous+Royal+Overgrown(Golden Roses)
+  VGC Special - Applies Fusion(Incineroar)+Aura(Spotlight)+Royal
+  Friendship is Magic - Applies Fusion(Gal.Rapidash)+Winged+Aura
+  Solar Eclipse - Applies Sun-Touched+Moon-Touched+Glowing
+  White Boy Special - Applies Albino+Delta(Normal)
+  One Man Band - Applies Fusion(Toxtricity+Rillaboom+Primarina)+Aura(Music Notes)
+  Watch Your Step! - Applies Fusion(Gal. Stunfisk)+Overgrown
+  Landlord Special - Applies Albino+(Fusion(Cutiefly) OR Delta(Bug))
+  Gingerbread Icing - Applies Fusion(Alcreamie)+Yuletide+Snacks(Gingerbread)
+  Left-Over Candy - Applies Cornucopia+Snacks(Candy Corn)+Mini
+  Blue Dragon - Applies Colored(Blue)+Aura+Delta(Dragon)
+  Pup Cup - Applies Fusion(Random Dog)+Snacks(Whipped Cream)
+  Cat Treat - Applies Familiar(Cat)+Snacks(Seafood)
+  Biscuit Factory Employee ID - Applies Fusion(Random Cat Pokemon)+Fluffy+Joyous 
+  Nurse Joys Ice pack - Applies Delta(Ice)+Spikey+Aura(any shade of blue with snowflakes or snow particles) 
+  School Lunch Special - Applies Mutated+Snacks+Melancholic
+  Cloak of Unity - Applies Fusion(Eevee)+Angelic+Mutated
+  Scepter of The Winged - Applies Angelic+Costumed(Eevee)+Winged
+  Crown of The Divine Sovereign - Applies Angelic+Royal+Glowing
+  Jirachi's Blessing - Applies Fusion(Jirachi)+Angelic+Aura(Stars/Sparkles)
+  The Blob - Applies Fusion(Ditto)+Slime+Monstrous+Giga
+  Brock's Jelly-Filled Donut - Applies Snacks(Onigiri)+Patches+Piebald
+  Gooey Snail Shell - Applies Fusion(Magcargo OR His.Goodra)+Slime+Overgrown(Moss)
+  Antique Armor  - Applies Fusion(Charcadet OR Armarouge OR Ceruledge)+Splotches+Tyrannian
+  Stormy Cloud - Applies Cloudy+Fluffy+Delta(Water+Flying)+Aura
+  Mushnik’s Prized Plant - Applies Fusion(Carnivine)+Monstrous+Delta(Dark)
+  Rick Astley’s Never Gonna Give You Up CD - Applies Fusion(Smeargle)+Albino+Aura(Music Notes)+Mutated(Microphone tail)+Clownz
+  Bug lover’s guide - Applies Fusion (3 Random Bug Type Pokémon)
+  Beach bro’s guide - Applies Fusion (3 Random Water OR Ground Type Pokemon)
+  Gilded Monkey’s Paw - Fusion (Any Monkey Pokemon)+Guilded fracture 
+  Knight's Guard - Applies Fusion(Corviknight+Honedge)+Statue 
+  Three Heads Are Better Than... - Applies Fuqsion(Dodrio OR Hydreigon)+Mutated
+  Soft As Cotton - Applies Fusion(Whimsicott OR Cottonee)+Fluffy+Delta(Grass)
+  Orchid Mantis - Applies Familiar(Any Mantis)+Overgrown(Any Orchid)
+  Pancake Stack - Applies Snacks(Pancakes)+Slime(Maple Syrup) 
+  Fern Flower - Applies Overgrown(Fern)+Pixie+Aura(Glow)
+  Jar with Treasure  - Applies Fusion(Gimmighoul)+Terrarium 
+  Holo Foil? - Applies Variant+Colored(Holographic)+Aura(Glow)
+  Tea Pet - Applies Terrarium+Fusion (Sinistea) 
+  Moon Halo - Applies Moon-Touched+Aura(Rainbow)
+  DandeLION - Applies Fusion(Pyroar)+Overgrown(Dandelion)
+  Easter Bunny - Applies Colored+Variant(Easter Egg Pattern)+Fusion( Bunneary or Bunnelby)
+  Don't Play on March 18th!! - Applies Patches+Joyous+Glitch+Aura(Binary)
+  Forgotten WIP - Applies Sketched+Melancholic
+  Honey I'm Home - Applies Fusion (Lurantis+Noximoth)+Angelic
+  Weather Forecast - Cloud+Aura(Rain)+Melancholic
+  Religious Speedrun! - Melanistic+Angelic+Aura(Red rain)
+  Hero Sigil (Flash) - Applies Shiny+Aura+Delta(Electric)
+  Hero Sigil (Hulk) - Applies Coloured+Giga+Delta(Fighting)
+  Hero Sigil (Thor) - Applies Fusion(Tinkatink)+Delta(Electric)
+  Hero Sigil (Thing) - Applies Statue+Delta(Ground)
+  Hero Sigil (Iron Man) - Applies Coloured+Robotic+Glowing+Delta(Steel)
+  Nightmare - Applies Wraith+Sand Man
+  Doggy Doze - Applies Familiar(Dog, Wild or Domesticated)+Sand Man
+  Beginner's Guide - Applies Fusion (Random Starter)
+  Ancient Tablet - Applies Fusion(Arceus)+Delta(Random Type)
+  Unlimited Bacon, But No Games - Applies Fusion(Spoink, Swinub, Tepig OR Lechonk)+Snacks+Familiar+Glitch
+  Candy Gore - Applies Transparent+Snacks+Slime+Aura(Candy)
+  My Chemical Romance - Applies Fusion(Noibat)+Aura(Alternative Vibes)
+  Royal Star Candy - Applies Fusion(Shinx)+Aura(Stars)+Royal
+  Airplanes In The Night Sky - Applies Fusion(Shinx)+Delta(Flying)+Galactic
+  New Years Sparklers - Applies Fusion(Shinx)+Delta(Electric)+Shiny
+  A Sparking Bite - Applies Fusion(Shinx, Luxio, OR Luxray)+Aura(Teeth OR Mouths)+Mutated(Extra Mouths)+Delta(Electric)
+  I Want To Be A Star, Thunder - Applies Costumed(Shinx)+Familiar(Ginger cat)+ Aura(Sparkles and/or Stars)
+  Too Much Blue - Applies Copycat(Shinx)+Colored(Blues)+Natatoric
+  Popping Candy.. But It Sparks? - Applies Copycat(Shinx)+Aura(Candy or sparks)+Snacks+Delta(Electric)
+  Star Touched Saber - Applies Copycat(Shinx)+Tyrannian(Sabertooth)+Aura(Stars and/or Sparkles)
+  Cat's Outta The Bag - Applies Costumed(Trubbish)+Copycat(Shinx)
+  Aliens Have Pants? - Applies Alien+Copycat(Shinx)
+  A Devilish Disguise - Applies Costumed(Inccumine)+Copycat(Zorua OR Zoroark)+Demonic
+  Unlimited Games, But No Games - Applies Fusion(Rotom OR Porygon)+Wraith+Glitch
+  Bantam Chicken - Applies Familiar(Chicken)+Mini
+  Cinnamon Raisin Bread - Applies Fusion(Fidough)+Snacks+Patches
+  Fridge Magnets - Applies Fusion(Magnemite)+Delta(Ice)
+  Imp Emoji - Applies Shadow+Joyous+Demonic
+  RC Car - Applies Toy+Robotic
+  Broken Pinata - Applies Colored+ArtsNCrafts+Snacks
+  Erchius Fuel -  Applies Colored+Wraith+Moon-Touched
+  Fake Rainbow Stone - Applies Copycat(Eeveelution)
+  Holiday Tree Topper - Applies Yuletide+Angelic+Galactic
+  World Owner -  Applies Fusion(Farfetch'd OR Gal.Farfetch'd)+Splotch(Cyan)+Royal+Fluffy+Overgrown(Rose)
+  Suspicious Capsule - Applies Fusion(Wooper)+Colored(Red)+Alien+Terrarium(Head)
+  Book Titled "Competitively Viable Guide" - Applies Fusion(Murkrow)+Cloudy+Aura+Demonic
+  Sign That Says "It Doesn't Look Like It's Holding Anything" - Removes every traits the Pokemon has, then applies Costume(Watchog)
+  A Bottle Containing Ink Mixed With Lake Water - Applies Giga+Mutated(Multiple Limbs)+Aquatic+Aura+Natatoric
+  Broken Metronome -  Applies Copycat(Togepi)+Glided Fracture
+  Bottle Without A Ship - Removes Overgrown then applies Delta(Water)
+  Nightshift Job Application - Applies Robot+Transparent+Delta(Ghost)+Melancholic
+  Yellow Teddy With A Pink Hat - Applies Robot+Mutated(Additional Eyes On Body)+Joyous
+  Mime Make-up - Applies Albino OR Melanistic+Clown
+  Deck of Cards - Applies Variant(Clovers, Hearts, Diamonds OR clubs)+Aura(Cards)+Clown
+  Moon Goddess' Tears in a Bottle -  Applies Melancholic+Moon-touched+Angelic+Mutated(Extra wings)+Giga(Wings)
+  Rejection Letter from Clown School - Applies Melancholic+Clown
+  Funny Confession Card - Applies Colored(Pinks and blues)+Clown+Lovecore+Winged+Mini(Wings)
+  Magic Hat with a Magic Bunny - Applies Fusion (Buneary, Bunnelby, OR Scorbunny)+Clown+Delta(Psychic)
+  Party Hat - Applies Snacks(Cake)+Clown+Giga+Fusion (Alcreamie)

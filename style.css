@@ -4,6 +4,10 @@ body {
   color: #E1E1E1
 }
 
+a {
+  color: #52A4FF
+}
+
 #resultsBox {
   max-width: 700px;
   padding: 20px;

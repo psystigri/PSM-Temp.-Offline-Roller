@@ -261,3 +261,61 @@ function rarity(common,uncommon,rare) {
 
   return final
 }
+
+
+// LISTPICKER SCRIPTS -------------------------------------------------------------
+function pickFromList(divID) {
+  var rawList = document.getElementById("listArea").value.split("\n").map(item => item.trim())
+  var amnt = document.getElementById("rollAmnt").value
+  var pay = document.getElementById("payInput").value
+  var output = []
+
+  // Clamps pay to 100-2000 range
+  if (pay < 100 || pay == undefined) {
+    pay = 100
+  } else if (pay > 2000) {
+    pay = 2000
+  }
+
+  // Payment percentage
+  var percent = ((pay-100)/1900).toFixed(2)
+  // Calculates odds
+  var one = ((15*(1-percent))+5)*10
+  var two = ((4*(1-percent))+6)*10
+  var three = ((5*percent)+3)*10
+  var four = ((10*percent)+1)*10
+
+  var total = one+two+three+four // total odds value
+  var combined = [one,two,three,four] // array of combined odds
+
+  // random value between 0 and full odds
+  var ran = random(total)
+
+  var cumulative = 0;
+
+  // Checks which amount 'ran' falls under
+  if (amnt == 0) {
+    for (let i = 0; i < combined.length; i++) {
+      // adds the value of the current odd "level", in order to check which level 'cumulative' is currently at
+      cumulative += combined[i];
+
+      // if ran is lower than the current cumulative value, that means that "i" is at the correct level / amnt
+      if (ran < cumulative) {
+        amnt = i + 1;
+        break;
+      }
+    }
+  }
+
+  // Adds appropriate amount of items to 'output'
+
+  var listLength = rawList.length
+
+  for (let i = 0; i < amnt; i++) {
+    ran = random(listLength)
+    output.push(rawList[ran])
+  }
+
+  // writes to #results
+  document.getElementById(divID).innerHTML = output.join("<br>")
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>PSM List Picker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js"></script>
+  </head>
+  <body>
+    <h1>General List Picker</h1>
+    <div id="resultsBox">
+      <div id="results" style="line-height: 30px;">
+      </div>
+    </div>
+    <p style="font-size: 90%; font-style: italic;">
+      Use for Gambling Paradise, etc.
+    </p>
+
+    <button onclick="pickFromList('results')">
+      Roll
+    </button>
+
+    <hr>
+
+    <select id="rollAmnt">
+      <option value="1">1 Item</option>
+      <option value="2">2 Items</option>
+      <option value="3">3 Items</option>
+      <option value="4">4 Items</option>
+      <option value="0" selected>Use Poké</option>
+    </select>
+    <input id="payInput" placeholder="Currency paid (100-2000)" style="max-width: 70px;">
+
+    <br><br>
+
+    <b>Item List</b>
+    <br>
+    <textarea id="listArea" spellcheck=false>
+    </textarea>
+    <p style="font-size: 90%; font-style: italic;">
+      You can find a list of gambling items in the list folder, or <a href="https://docs.google.com/document/d/1w4Nu6kGzOe1x1O_1j8wsjB0gzNzbyN86l8EidiTGsaA">here</a> (GDocs)
+    </p>
+
+  </body>
