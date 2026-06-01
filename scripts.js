@@ -341,7 +341,7 @@ function pickFromList(divID) {
   }
 
   // writes to #results
-  document.getElementById(divID).innerHTML = output.join("<br>")
+  document.getElementById(divID).innerHTML = output.join("<div class='split'></div>")
 }
 
 
