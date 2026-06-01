@@ -1,0 +1,161 @@
+// Note: Text that comes after "//" is ignored, which allows
+// you to write notes - like the one you're reading now!
+
+
+title
+  PSM Daycare
+
+splashtext
+  Reload the page for each new breeding as it will store any previously inputted data if you delete text or untick boxes^[3]
+  You have to tick both Delta and the types!
+  Seperate each new Pokémon species with a linebreak!
+  Pretend you don't see the undefineds
+  Don't forget to pick a color trait!
+  It looks better once you actually select traits I promise
+  Held together by scotch tape and glue
+  Made by Mars!
+  Made you look^[0.01]
+  If you see this, congratulations! I ate all your luck for the next year. Don't play any gacha games. <br>(This has a 1 in 1,000,000 chance of appearing)^[0.0000001]
+
+output
+  [mons.selectMany(outputCount).joinItems("<br>**(EGG)** ")]
+
+outputCount
+  1^[oval.checked == false]
+  2^[oval.checked == false]
+  3^[oval.checked == false]
+  4^[oval.checked == false]
+  5^[oval.checked == false]
+  6^[oval.checked == false]
+  7^[oval.checked == true]
+  8^[oval.checked == true]
+  9^[oval.checked == true]
+  10^[oval.checked == true]
+  11^[oval.checked == true]
+  12^[oval.checked == true]
+  
+fusionCount
+  1^30
+  2^[if (animal.getLength < 2) {0} else {40}]
+  3^[if (animal.getLength < 3) {0} else {20}]
+  4^[if (animal.getLength < 4) {0} else {10}]
+  
+mons
+  [n = fusionCount.selectOne, ""][m = monColor.selectOne, ""][animal.selectUnique(n).joinItems("+")]/[monColor]<!--First +-->[if ((m == "Basic+") || (n < 2)) {""} else {"+"}]<!--End First +-->[if (n > 1) {"Fusion"} else {""}]<!--Second +-->[if (m == "Basic") {""} else if (n < 2) {""} else {"+"}]<!--End Second +-->[if (m == "Basic") {""} else {[traits.selectUnique(traitCount).joinItems("+")]}]
+
+monColor
+  Basic
+  Basic+^[Basic.checked == true]
+  Colored^[Colored.checked == true]
+  Shadow^[Shadow.checked == true]
+  Albino^[Albino.checked == true]
+  Melanistic^[Melanistic.checked == true]
+  Shiny^[Shiny.checked == true]
+
+
+
+  
+traitCount
+  1^[if (traits.selectAll.filter(t => t.getOdds).getLength < 1) {0} else {16}]
+  2^[if (traits.selectAll.filter(t => t.getOdds).getLength < 2) {0} else {40}]
+  3^[if (traits.selectAll.filter(t => t.getOdds).getLength < 3) {0} else {29}]
+  4^[if (traits.selectAll.filter(t => t.getOdds).getLength < 4) {0} else {5}]
+  5^[if (traits.selectAll.filter(t => t.getOdds).getLength < 4) {0} else {4}]
+  6^[if (traits.selectAll.filter(t => t.getOdds).getLength < 6) {0} else {3}]
+  7^[if (traits.selectAll.filter(t => t.getOdds).getLength < 7) {0} else {2}]
+  8^[if (traits.selectAll.filter(t => t.getOdds).getLength < 8) {0} else {1.5}]
+  9^[if (traits.selectAll.filter(t => t.getOdds).getLength < 9) {0} else {0.4}]
+  10^[if (traits.selectAll.filter(t => t.getOdds).getLength < 10) {0} else {0.1}]
+
+traits
+  Mini^[Mini.checked == true]
+  Giga^[Giga.checked == true]
+  Aura^[Aura.checked == true]
+  Variant^[Variant.checked == true]
+  Patches^[Patches.checked == true]
+  Piebald^[Piebald.checked == true]
+  Spikey^[Spikey.checked == true]
+  Winged^[Winged.checked == true]
+  Fluffy^[Fluffy.checked == true]
+  Costumed^[Costumed.checked == true]
+  Invert^[Invert.checked == true]
+  Toon^[Toon.checked == true]
+  Royal^[Royal.checked == true]
+  Snacks^[Snacks.checked == true]
+  Mutated^[Mutated.checked == true]
+  Angelic^[Angelic.checked == true]
+  Demonic^[Demonic.checked == true]
+  Glowing^[Glowing.checked == true]
+  Terrarium^[Terrarium.checked == true]
+  Overgrown^[Overgrown.checked == true]
+  Gem^[Gem.checked == true]
+  Familiar^[Familiar.checked == true]
+  Cloudy^[Cloudy.checked == true]
+  Copycat^[Copycat.checked == true]
+  Splotches^[Splotches.checked == true]
+  Gilded Fracture^[GildedFracture.checked == true]
+  Nuclear^[Nuclear.checked == true]
+  Statue^[Statue.checked == true]
+  Eventide^[Eventide.checked == true]
+  Sketch^[Sketch.checked == true]
+  Galactic^[Galactic.checked == true]
+  Seasonal^[Seasonal.checked == true]
+  Toy^[Toy.checked == true]
+  Alien^[Alien.checked == true]
+  Glitch^[Glitch.checked == true]
+  Slime^[Slime.checked == true]
+  Robotic^[Robotic.checked == true]
+  Prism^[Prism.checked == true]
+  Joyous^[Joyous.checked == true]
+  Aquatic^[Aquatic.checked == true]
+  Neoteny^[Neoteny.checked == true]
+  Natatoric^[Natatoric.checked == true]
+  ArtsNCrafts^[ArtsNCrafts.checked == true]
+  Pixie^[Pixie.checked == true]
+  Sand Man^[SandMan.checked == true]
+  Sun-Touched^[SunTouched.checked == true]
+  Wraith^[Wraith.checked == true]
+  Transparent^[Transparent.checked == true]
+  Tyrannian^[Tyrannian.checked == true]
+  Moon-Touched^[MoonTouched.checked == true]
+  Melancholic^[Melancholic.checked == true]
+  Lovecore^[Lovecore.checked == true]
+  Monstrous^[Monstrous.checked == true]
+  Clown^[Clown.checked == true]
+  Prideful^[Prideful.checked == true]
+  Cornucopia^[Cornucopia.checked == true]
+  Yuletide^[Yuletide.checked == true]
+  [delta]^[Delta.checked == true]
+
+delta
+  Delta([deltaTypes.selectUnique(deltaCount).joinItems("+")])
+
+deltaCount
+  1^30
+  2^40
+  3^20
+  4^10
+
+deltaTypes
+  Normal
+  Grass
+  Fire
+  Water
+  Fighting
+  Flying
+  Poison
+  Ground
+  Rock
+  Bug
+  Ghost
+  Electric
+  Psychic
+  Ice
+  Dragon
+  Dark
+  Steel
+  Fairy
+
+
+  
+  

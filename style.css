@@ -8,6 +8,37 @@ a {
   color: #52A4FF
 }
 
+button, select {
+  background: #303032;
+  border: none;
+  border-radius: 10px;
+  padding: 7px 10px;
+  color: #E1E1E1;
+  margin-bottom: 10px;
+}
+button:hover, select:hover {
+  background: #2B2B2D;
+  color: #BFBCC3;
+  transition: 0.15s;
+  cursor: pointer
+}
+
+input {
+  background: #AFAFB3;
+  border: solid 2px #303032;
+  border-radius: 3px;
+  padding: 3px 7px;
+  color: #303032;
+}
+
+.split {
+  height: 1px;
+  max-width: 200px;
+  border-top: solid 2px #7E7E84;
+  margin: 5px auto;
+  opacity: 0.5
+}
+
 #resultsBox {
   max-width: 700px;
   padding: 20px;

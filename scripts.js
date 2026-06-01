@@ -262,6 +262,30 @@ function rarity(common,uncommon,rare) {
   return final
 }
 
+function listFixer(list, exceptions, keepers) {
+  // Turns exceptions & keepers list into arrays
+  const exceptionsList = exceptions.split(",").map(item => item.trim())
+  const keepersList = keepers.split(",").map(item => item.trim())
+
+  var output = []
+
+  for (const item of list) {
+    // Removes all items on exceptions lists
+    if (exceptionsList.includes(item)) {
+      continue
+    // Preserves all instances on keepers lists
+    } else if (keepersList.includes(item)) {
+      output.push(item)
+      continue
+    // Removes duplicates
+    } else if (!output.includes(item)) {
+      output.push(item);
+    }
+  }
+
+  return output;
+}
+
 
 // LISTPICKER SCRIPTS -------------------------------------------------------------
 function pickFromList(divID) {
@@ -318,4 +342,191 @@ function pickFromList(divID) {
 
   // writes to #results
   document.getElementById(divID).innerHTML = output.join("<br>")
+}
+
+
+// BREEDING SCRIPTS -------------------------------------------------------------
+function breed(divID) {
+  var sire = document.getElementById("sire").value
+  var dam = document.getElementById("dam").value
+
+  // splits species and traits
+  const sireSpecies = (sire.split("/"))[0].split("+")
+  const damSpecies = (dam.split("/"))[0].split("+")
+
+  var sireTraitsRaw = (sire.split("/"))[1].split("+")
+  var damTraitsRaw = (dam.split("/"))[1].split("+")
+
+  // Creates a raw species pool, and a species pool without duplicates
+  var speciesPoolRaw = [...sireSpecies, ...damSpecies]
+  var speciesPool = listFixer(speciesPoolRaw,"Ditto","Eevee,Lepiva")
+
+  // Combined species amount + parents' species amount
+  var maxSpecies = 1
+  if (speciesPool.length >= 4) {
+    maxSpecies = 4
+  } else {
+    maxSpecies = speciesPool.length
+  }
+  var sireSpeciesAmnt = sireSpecies.length
+  var damSpeciesAmnt = damSpecies.length
+
+  // Separates color trait
+  sireColor = sireTraitsRaw[0]
+  damColor = damTraitsRaw[0]
+  // removes color trait from raw list
+  sireTraitsRaw.splice(0,1)
+  damTraitsRaw.splice(0,1)
+
+  // removes duplicate traits from individual parent lists
+  var sireTraits = listFixer(sireTraitsRaw,"Fusion,Birthday Bash","")
+  var damTraits = listFixer(damTraitsRaw,"Fusion,Birthday Bash","")
+  // counts amount of traits each parent has
+  var sireTraitAmnt = sireTraits.length
+  var damTraitAmnt = damTraits.length
+
+  // Creates a raw trait pool, and a trait pool without duplicates
+  var traitPoolRaw = [...sireTraits, ...damTraits]
+  var traitPool = listFixer(traitPoolRaw,"","")
+  var maxTraits = traitPool.length
+
+  // defines childAmnt
+  var childAmnt = 1
+  var ovalCharm = document.getElementById("ovalCharm").checked
+
+  var ran = random(100)
+  if (ran <= 10) {
+    childAmnt = 6
+  } else if (ran <= 25) {
+    childAmnt = 5
+  } else if (ran <= 55) {
+    childAmnt = 4
+  } else if (ran <= 80) {
+    childAmnt = 3
+  } else if (ran <= 95) {
+    childAmnt = 2
+  } else {
+    childAmnt = 1
+  }
+
+  if (ovalCharm == true) {
+    childAmnt = childAmnt*2
+  }
+
+  var baseSpeciesAmnt = 1
+  if (sireSpeciesAmnt <= damSpeciesAmnt) {
+    baseSpeciesAmnt = sireSpeciesAmnt
+  } else {
+    baseSpeciesAmnt = damSpeciesAmnt
+  }
+
+  var children = []
+  // for loop that makes it so you get as many children as you rolled #yup
+  for (let i = 0; i < childAmnt; i++) {
+    var listLength = 1
+    var childID = 0
+
+    // SPECIES START
+    // Still need to add Ditto functionality if desired
+    var childSpeciesAmnt = 1
+    var childSpecies = []
+    var childSpeciesPool = [...speciesPool]
+
+    ran = random(100)
+    if (ran < 15) {
+      childSpeciesAmnt = sireSpeciesAmnt
+    } else if (ran < 30) {
+      childSpeciesAmnt = damSpeciesAmnt
+    } else if (ran < 70) {
+      childSpeciesAmnt = random(maxSpecies - baseSpeciesAmnt + 1) + baseSpeciesAmnt
+    } else if (ran < 85 && maxSpecies >= 2) {
+      childSpeciesAmnt = 2
+    } else {
+      childSpeciesAmnt = 1
+    }
+
+    if (childSpeciesAmnt > maxSpecies) {
+      childSpeciesAmnt = maxSpecies
+    }
+
+    ran = random(100)
+    if (speciesPool == 0 || (speciesPoolRaw.includes("Ditto") && ran < 2)) {
+      // Defaults to Ditto if there are no inheritable species
+      childSpecies.push("Ditto")
+      childSpeciesAmnt = 0
+    } else if (speciesPoolRaw.includes("Ditto") && childSpeciesAmnt < 4 && ran < 5) {
+      childSpecies.push("Ditto")
+    }
+
+    for (let i = 0; i < childSpeciesAmnt; i++) {
+      listLength = childSpeciesPool.length
+      childID = random(listLength)
+      childSpecies.push(childSpeciesPool[childID])
+      childSpeciesPool.splice(childID,1)
+    }
+
+    // SPECIES OVER
+
+    // COLOR START
+    var childTraitPool = [...traitPoolRaw]
+    var childTraits = []
+    var childTraitAmnt = 0
+
+    // Determines child's amount of traits
+    ran = random(100)
+    if (ran < 15) {
+      childTraitAmnt = random(maxTraits - sireTraitAmnt + 1) + sireTraitAmnt
+    } else if (ran < 30){
+      childTraitAmnt = random(maxTraits - damTraitAmnt + 1) + damTraitAmnt
+    } else if (ran < 60) {
+      childTraitAmnt = sireTraitAmnt
+    } else if (ran < 90) {
+      childTraitAmnt = damTraitAmnt
+    } else {
+      childTraitAmnt = 0
+    }
+
+    if (childTraitAmnt > maxTraits) {
+      childTraitAmnt = maxTraits
+    }
+
+    // Determines child's color trait
+    ran = random(100)
+    if (ran < 40) {
+      childTraits.push(sireColor)
+    } else if (ran < 80) {
+      childTraits.push(damColor)
+    } else if (ran < 98){
+      childTraits.push("Basic")
+    } else {
+      childTraits.push("Shiny")
+    }
+
+    ran = random(100)
+    if (childSpecies.length > 1) {
+      childTraits.push("Fusion")
+      if (ran < 50 && childTraitAmnt >= 1) {
+        childTraitAmnt = childTraitAmnt - 1
+      }
+    }
+
+    for (let i = 0; i < childTraitAmnt; i++) {
+      listLength = childTraitPool.length
+      childID = random(listLength)
+      childTraits.push(childTraitPool[childID])
+      childTraitPool.splice(childID,1)
+    }
+    // TRAITS END
+
+    childTraits = listFixer(childTraits,"","")
+
+    if (childTraits.includes("Shiny")) {
+      children.push(childSpecies.join("+")+"/"+childTraits.join("+")+"&#x2728;")
+    } else {
+      children.push(childSpecies.join("+")+"/"+childTraits.join("+"))
+    }
+  }
+
+  // writes to #results
+  document.getElementById(divID).innerHTML = children.join("<div class='split'></div>")
 }

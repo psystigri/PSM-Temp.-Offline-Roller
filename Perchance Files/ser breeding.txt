@@ -1,0 +1,272 @@
+// Note: Text that comes after "//" is ignored, which allows
+// you to write notes - like the one you're reading now!
+
+title
+  Silent Eclipse Redux Breeding
+
+output
+  <b>[cnum=childnum.evaluateItem] offspring</b><br><br>[offspring.selectMany(cnum).joinItems(splitLine)] 
+  
+offspring=<div>[chooseSpecies]/{[offspringTraits.evaluateItem.replace("Delta",childDelta)]^[luck.checked==false]|[offspringTraits]^[luck.checked]} [fOSA.isFusion=false,""]</div>
+splitLine=<hr style="width:50px; opacity:0.2">
+
+// Placeholders
+parent1=Eevee+Espurr/Fusion+Mutated+Delta(Grass)
+parent2=Eevee+Espurr/Fusion+Costumed
+
+// Ported from old roller. Calculates child number.
+childnum
+  [oddincense]^[odd.checked == true && rose.checked == false ? 1 : 0]
+  [randomnumber]^[odd.checked == false && rose.checked == false ? 1 : 0]
+  [Math.round(randomnumber / 2)]^[rose.checked == true ? 1 : 0]
+
+oddincense=[randomnumber*2]
+
+randomnumber
+  2
+  3^1.25
+  4^1.50
+  5^[odd.checked == true ? 1.50 : 1.25]
+  6^[odd.checked == true ? 1.25 : 1]
+
+// Merges parent lists and removes duplicate using plugin
+ps1=[parent1.split("/")[0]]+[parent2.split("/")[0]]
+ps2=[ps1.evaluateItem.split("+")]
+parentSpecies=[speciesFixer(ps2,specieExceptions)]
+specBase=[listFixer(ps2).getLength]
+
+// Delta Fixer
+pDelta1=[extractDelta(parent1.split("/")[1])]
+pDelta2=[extractDelta(parent2.split("/")[1])]
+pFixed1=[pDelta1 != "noDelta" ? removeDelta(parent1.split("/")[1]) : parent1.split("/")[1]]
+pFixed2=[pDelta2 != "noDelta" ? removeDelta(parent2.split("/")[1]) : parent2.split("/")[1]]
+// Actual list merger :)
+pt1=[pFixed1]+[pFixed2]
+pt2=[pt1.evaluateItem.split("+")]
+parentTraits=[speciesFixer(pt2, specieExceptions)]
+
+specieExceptions = Eevee ** Slup ** Hachuloid ** Lepiva ** Grattzrd
+
+// Checks if both parents are dittos
+dittoBreeding = [parentSpecies == 0]
+
+// Designates amount of unique species/traits present in the breeding
+speciesAmount=[parentSpecies.getLength]
+traitAmount=[parentTraits.getLength]
+
+t1=[listFixer(parent1.split("/")[1].split("+")).getLength]
+t2=[listFixer(parent2.split("/")[1].split("+")).getLength]
+traitCalc=[Math.floor((t1 + t2) / 2 - 0.5)]
+
+// Change these values to change how many species/traits can be rolled by any given offspring.
+// Obviously modify "5" and "3" to change the maximums etc etc.
+minTraits=[maxTraits != 0 ? (traitCalc > 1 ? traitCalc : 1) : 0]
+maxTraits=[traitAmount >= 5 ? 5 : traitAmount]
+minSpecies=1
+maxSpecies
+  [speciesAmount >= 3 ? 3 : speciesAmount]^[speciesAmount <= specBase]
+  2^[speciesAmount > specBase && specBase < 3]
+  3^[speciesAmount > specBase && specBase >= 3]
+
+// Determines offspring trait amount -----------
+preOTA1
+  1^[pbt1]
+  2^[pbt2]
+  3^[pbt3]
+  4^[pbt4]
+  5^[pbt5]
+otaFallback=[randomInteger(minTraits,maxTraits)]
+preOTA2=[(p=preOTA1.selectOne) >= minTraits && p <= maxTraits ? p : otaFallback]
+ota=[preOTA2]
+
+// Determines offspring species amount -----------
+// Creates addDitto for later. "100" will always default to false. addDitto must be under or equal to 5 in order for Ditto to be present in child geno.
+// osa will depend on the amount of unique species, unless both parents are Dittos, in which case it will use flat rates:
+// 80% chance for a single species, 17% for two, 3% for three.
+osa
+  1^[pb1]
+    isFusion=false
+    addDitto={[r150.evaluateItem]^[ps2.includes("Ditto") == true]|100^[ps2.includes("Ditto" == false)]}
+  2^[pb2]
+    isFusion=true
+    addDitto={[r200.evaluateItem]^[ps2.includes("Ditto") == true]|100^[ps2.includes("Ditto" == false)]}
+  3^[pb3]
+    isFusion=true
+    addDitto=100
+
+r150={0-150}
+r200={0-200}
+
+// Chooses child species according to a chosen osa value, set above.
+chooseSpecies = [fOSA=osa.selectOne,""][offspringSpecies.selectOne]
+
+// Checks if dittoBreeding is true (= Both parents are full Dittos) and if the chosen osa value has an addDitto randomized value of 5 or under.
+// If dittoBreeding is true, it will still check for an addDitto value. But either way, it will use the egg-hatching roller's Pokémon lists to determine species.
+// If dittoBreeding is false but Ditto is present in the parent genos, other unique species in the breeding will be pulled, and Ditto will only be appended-
+// -if the chosen osa's addDitto value is under or equal to 5. This is about a 3-4% chance for any child that would otherwise have had 1-2 species. 3 species-
+// offspring will never have a compatible addDitto value.
+// This means that if there are a lot of species involved in the breeding, Ditto showing up becomes more and more unlikely.
+// A fully Ditto child is generally a 0.2% chance, with the same caveat that the more species are involved, the less likely it becomes.
+offspringSpecies
+  [parentSpecies.selectUnique(fOSA).joinItems("+")][fOSA.isFusion = fOSA>=2 ? true : false, ""]^[fOSA.addDitto > 5 && dittoBreeding == false]
+  Ditto+[parentSpecies.selectUnique(fOSA).joinItems("+")][fOSA.isFusion=true,""]^[fOSA.addDitto <= 5 && dittoBreeding == false && ps2.includes("Ditto") == true]
+  Ditto+[pokestock.selectMany(fOSA).joinItems("+")][fOSA.isFusion=true,""]^[fOSA.addDitto <= 5 && dittoBreeding == true && ps2.includes("Ditto") == true]
+  Ditto^[fOSA.addDitto <= 5 && ps2.includes("Ditto") == true ? 0.05 : 0]
+  [pokestock.selectMany(fOSA).joinItems("+")][fOSA.isFusion = fOSA>=2 ? true : false, ""]^[dittoBreeding == true]
+
+// NOTE!!! ADD FUSION SHIT CHECK OFFSPRING TRAIT AMOUNT YOU CAN DO IT I BELIEVE IN YOU
+// ^ I'm pretty sure this note is obsolete but I'm keeping it just in case. Why are you looking, anyways, if you aren't me? Get out of here! Shoo!
+offspringTraits={[traitAmount <= 0 ? noTraits : chooseTraits]^[luck.checked == false]|[luckyTraits]^[luck.checked == true]}
+
+// Mostly just arranges how traits will look in child genos.
+// Adds "Fusion" if necessary, using the chosen osa value (fOSA). Likelihood of getting no traits decreases the more unique traits are involved in the breeding.
+chooseTraits
+  [noTraits]^[pbNoTr]
+  {Fusion+^[fOSA.isFusion==true]|^[fOSA.isFusion==false]}[parentTraits.selectUnique(ota).joinItems("+")]^[pbTrtd]
+
+// Same logic as chooseTraits without the chance of offpspring having no traits at all.
+// Pulls traits & probabilities directly from the egg-hatching trait list.
+luckyTraits = {Fusion+^[fOSA.isFusion==true]|^[fOSA.isFusion==false]}[traitstock.selectUnique(ota <= 1 ? ota + 1 : ota).joinItems("+")]
+
+// Determines whether an otherwise untraited Pokémon should display the Basic or Fusion trait.
+noTraits = {Basic^[fOSA.isFusion == false]|Fusion^[fOSA.isFusion == true]}
+
+//---------------------------------------- DEBUG -----------------------------------------------
+debugNotes={^[debugEnabled.checked == false]|[dn]^[debugEnabled.checked == true]}
+addyNotes={^[debugEnabled.checked == false]|[addyWarning]^[debugEnabled.checked == true]}
+
+dn=[probaBS]<br>[splitStats]<hr style="width:50px; opacity:0.2">[probaBT]<br><i style="opacity:0.5">(!!doesn't apply to fallback!!)<br></i>{^[pDelta1=="noDelta"&&pDelta2=="noDelta"]|[deltaDebug]^[pDelta1!="noDelta"||pDelta2!="noDelta"]}[traitVar]<hr style="width:50px; opacity:0.2">[dittoOdds]<hr style="width:50px; opacity:0.2">Inheritable Traits: [parentTraits.getLength]<br><div id="ds">[ptraitsDebug]</div>Inheritable Species: [parentSpecies.getLength]<br><div id="ds">[pspecDebug]</div>Inheritable Deltas: [deltaTypes.getLength]<br><div id="ds">[ptypeDebug]</div>
+addyWarning=<span style="color:red">WARNING! If you aren't me (Addison)-</span><br><span style="font-size:75%">Then please don't take everything in the Debug at face value.<br>It's intended to help with coding and probabilities, but isn't built to be palatable to someone who doesn't know the ins and outs of the roller.<br>I'd rather keep questions regarding this Debug option to a minimum, unless I specifically ask for them.<br>Thank you!</span>
+
+traitVar=<hr style="width:50px; opacity:0.2">traitCalc: [traitCalc]<br>Trait Range: ([minTraits]) - ([maxTraits])
+
+pb1=[dittoBreeding == false ? 6 - 0.5 * speciesAmount : 0.80]
+pb2=[maxSpecies >= 2 ? dittoBreeding == false ? speciesAmount >= 2 ? 2 + 0.2 * speciesAmount: 0 : 0.17 : 0]
+pb3=[maxSpecies >= 3 ? dittoBreeding == false ? speciesAmount >= 3 ? 1 * (speciesAmount*0.2) + 0.15 * speciesAmount : 0 : 0.03 : 0]
+pbf=[pb1+pb2+pb3]
+probaBS=1 Species: [Math.round((pb1/pbf)*100)]%<br>2 Species: [Math.round((pb2/pbf)*100)]%<br>3 Species: [Math.round((pb3/pbf)*100)]%
+
+// Split Evo Stats
+splitStats=<div style="margin-top:5px">speciesAmount is <b>[speciesAmount]</b> | specBase is <b>[specBase]</b> | maxSpecies is <b>[maxSpecies]</b><br>No Splitdupes: [speciesAmount <= specBase]<br>Max 2 Species: [speciesAmount > specBase && specBase < 3]<br>Max 3 Species: [speciesAmount > specBase && specBase >= 3]<br>Max Species: [maxSpecies]</div>
+
+// Attempt at writing Ditto odds:
+dittoOdds=Ditto Fusion: [((radFusion-radFull)*100).toFixed(1)]%<br>Full Ditto: [(radFull*100).toFixed(2)]%<br><span id="ds"><i>dittoBreeding is <b>[dittoBreeding]</b><br>There <b>{are ✓^[ps2.includes("Ditto")]|are no ✗^[ps2.includes("Ditto") == false]}</b> Dittos in this breeding.</i></span>
+do1=[pb1/pbf]
+do2=[pb2/pbf]
+rad1=[(5/151) * do1]
+rad2=[(5/201) * do2]
+radFusion=[(rad1+rad2).toFixed(3)]
+radFull=[(radFusion * (0.05/1.05)).toFixed(4)]
+
+// Delta odds:
+dd1=[maxDelta <= 2 ? 0.75 : 0.5]
+dd2=[maxDelta >= 2 ? (maxDelta > 2 ? 0.7 : 0.5) : 0]
+dd3=[maxDelta >= 3 ? (maxDelta > 5 ? 0.2 : 0.08) : 0]
+ddf=[dd1+dd2+dd3]
+deltaDebug=<hr style="width:50px; opacity:0.2">1 Type: [Math.round((dd1/ddf)*100)]%<br>2 Types: [Math.round((dd2/ddf)*100)]%<br>3 Types: [Math.round((dd3/ddf)*100)]%
+
+// OLD SPECIES PROBABILITIES v
+// pb1=[dittoBreeding == false ? 3 + 0.05 * speciesAmount : 0.80]
+// pb2=[dittoBreeding == false ? speciesAmount >= 2 ? 2 + 0.1 * speciesAmount: 0 : 0.17]
+// pb3=[dittoBreeding == false ? speciesAmount >= 3 ? 1 + 0.15 * speciesAmount : 0 : 0.03]
+
+pbt1=[maxTraits > 0 ? (minTraits <= 1 ? (4 + 0.05 * traitAmount) : 0.9) : 0]
+pbt2=[maxTraits >= 2 ? (minTraits <= 2 ? (3 + 0.075 * traitAmount) : 0.8) : 0]
+pbt3=[maxTraits >= 3 ? (minTraits <= 3 ? (2 + 0.1 * traitAmount) : 0.7) : 0]
+pbt4=[maxTraits >= 4 ? (minTraits <= 4 ? (1.5 + 0.15 * traitAmount) : 0.75) : 0]
+pbt5=[maxTraits >= 5 ? (minTraits <= 5 ? (1 + 0.15 * traitAmount) : 0.8) : 0]
+pbtf=[pbt1+pbt2+pbt3+pbt4+pbt5]
+probaBT=[traitOrNo]1 Trait: [maxTraits != 0 ? (Math.round((pbt1/pbtf)*100)) : 0]%<br>2 Traits: [maxTraits != 0 ? (Math.round((pbt2/pbtf)*100)) : 0]%<br>3 Traits: [maxTraits != 0 ? (Math.round((pbt3/pbtf)*100)) : 0]%<br>4 Traits: [maxTraits != 0 ? (Math.round((pbt4/pbtf)*100)) : 0]%<br>5 Traits: [maxTraits != 0 ? (Math.round((pbt5/pbtf)*100)) : 0]%
+
+mtForPB
+  4^[maxTraits >= 1 && maxTraits < 3]
+  2^[maxTraits >= 3 && maxTraits < 4.5]
+  0.75^[maxTraits >= 4.5 && traitAmount < 8]
+  1^[traitAmount >= 8]
+
+pbNoTr=[8 - (traitAmount*0.5) - maxTraits]
+pbTrtd=[maxTraits*(mtForPB+maxTraits*0.25)]
+pbNTRf=[pbNoTr+pbTrtd]
+traitOrNo=<div style="margin-bottom:5px">No Traits: [Math.round((pbNoTr/pbNTRf)*100)]%<br>Traited: [Math.round((pbTrtd/pbNTRf)*100)]%</div>
+
+ptraitsDebug=[parentTraits.selectUnique(parentTraits.getLength).joinItems(", ")]
+pspecDebug=[parentSpecies.selectUnique(parentSpecies.getLength).joinItems(", ")]
+ptypeDebug=[deltaTypes.selectUnique(deltaTypes.getLength).joinItems(", ")]
+
+//----------------------------------- SPLIT EVO BULLSHIT ---------------------------------------
+
+speciesFixer(arr, specieExceptions) =>
+  const exceptions = specieExceptions.split(" ** ");
+  // Create a map to count occurrences of items in the exceptions list
+  const exceptionsCount = new Map();
+
+  // Iterate over the array to count exceptions and create a unique set for other items
+  const uniqueSet = new Set();
+  arr.forEach(item => {
+    if (exceptions.includes(item)) {
+      exceptionsCount.set(item, (exceptionsCount.get(item) || 0) + 1);
+    } else if (item !== "Fusion" && item !== "Basic" && item !== "Ditto" && item !== "noDelta") {
+      uniqueSet.add(item);
+    }
+  });
+
+  // Convert the unique set back to an array
+  const uniqueArray = Array.from(uniqueSet);
+
+  // Add the counted exceptions back to the array, ensuring no more than two of each
+  exceptionsCount.forEach((count, item) => {
+    const limitedCount = Math.min(count, 2);
+    for (let i = 0; i < limitedCount; i++) {
+      uniqueArray.push(item);
+    }
+  });
+
+  return uniqueArray;
+
+//------------------------------------- DELTA HANDLER ------------------------------------------
+
+deltaTypesRaw=[pDelta1]+[pDelta2]
+deltaTypes=[listFixer(deltaTypesRaw.evaluateItem.split("+"))]
+maxDelta=[deltaTypes.getLength]
+
+deltaAmount
+  1^[dd1]
+  2^[dd2]
+  3^[dd3]
+
+childDelta=Delta([deltaTypes.selectUnique(deltaAmount).joinItems("+")])
+
+extractDelta(inputText) =>
+  const regex = /Delta\(([^)]+)\)/;
+  const match = inputText.match(regex);
+  
+  return match ? match[1] : "noDelta";
+
+removeDelta(inputText) =>
+  const regex = /Delta\([^)]+\)/;
+  return inputText.replace(regex, 'Delta');
+
+//--------------------------------------- IMPORTS ----------------------------------------------
+
+pokestock=[egghatching.allpokemon]
+traitstock=[egghatching.traits]
+egghatching={import:se-egg-hatching}
+listFixer={import:addy-dupe-deleter-plugin}
+randomInteger = {import:random-integer-plugin}
+// Tips:
+//  - Highlight multiple lines and press Tab or Shift+Tab to indent and un-indent them all an once
+//  - You can change the URL of your generator by clicking the "settings" button in the top-right
+//  - Use this template if you want your generator to be vertically centered on the page:  perchance.org/centered-minimal#edit
+//  - Add background images, fonts, and other stuff with plugins: perchance.org/plugins
+//  - This plugin converts text into images using AI: https://perchance.org/text-to-image-plugin
+//  - Here are some templates that you can use to create nice-looking generators without learning HTML and CSS:  perchance.org/templates
+//  - Use the "layout maker" plugin to create complex layouts without learning how to code:  perchance.org/layout-maker-plugin
+//  - Here are some generators you might like to import:  perchance.org/useful-generators
+//  - Read this page after reading the tutorial:  perchance.org/examples
+//  - There's a "wrap" button in the top-right if your lines are really long. If you add   $output=[this.joinItems(" ")]   as the first item in your list, then writing [yourListName] will magically output all of the items joined together, rather than a random item from the "yourListName" list.
+//  - Ask our friendly community members if you need help:  lemmy.world/c/perchance
+// \( ﾟヮﾟ)/
+
+
+
+
