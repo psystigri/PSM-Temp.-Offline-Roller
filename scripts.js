@@ -270,6 +270,11 @@ function listFixer(list, exceptions, keepers) {
   var output = []
 
   for (const item of list) {
+    // Removes empty items
+    if (item.trim() == "") {
+      continue
+    }
+
     // Removes all items on exceptions lists
     if (exceptionsList.includes(item)) {
       continue
@@ -284,6 +289,21 @@ function listFixer(list, exceptions, keepers) {
   }
 
   return output;
+}
+
+function extractFromList (input, trait) {
+  // trait = "Delta" or "Chimera"
+  const regex = new RegExp(trait + "\\(([^)]+)\\)");
+  const match = input.match(regex)
+
+  return match ? match[1] : false
+}
+
+function replaceFromList (input, trait) {
+  // trait = "Delta" or "Chimera"
+  const regex = new RegExp(trait + "\\(([^)]+)\\)");
+
+  return input.replace(regex,trait)
 }
 
 
@@ -350,12 +370,50 @@ function breed(divID) {
   var sire = document.getElementById("sire").value
   var dam = document.getElementById("dam").value
 
-  // splits species and traits
-  const sireSpecies = (sire.split("/"))[0].split("+")
-  const damSpecies = (dam.split("/"))[0].split("+")
+  // Extracts Delta & Chimera values if any
+  var deltaTypePool = []
+  if (sire.includes("Delta") == true) {
+    deltaTypePool.push(...extractFromList(sire, "Delta").split("+"))
+  }
+  if (dam.includes("Delta") == true) {
+    deltaTypePool.push(...extractFromList(dam, "Delta").split("+"))
+  }
+  // True/false statement to check if delta is present in parents
+  if (dam.includes("Delta") == true || sire.includes("Delta") == true) {
+    var hasDelta = true
+  } else {var hasDelta = false}
 
-  var sireTraitsRaw = (sire.split("/"))[1].split("+")
-  var damTraitsRaw = (dam.split("/"))[1].split("+")
+// Slice here removes the color trait(s) since all are pushed to the same array.
+  var chimTraitPool = []
+  if (sire.includes("Chimera") == true) {
+    chimTraitPool.push(
+      ...extractFromList(sire, "Chimera")
+      .replace(/Delta\([^)]+\)/g, "")
+      .split("+").filter(x => x !== "").slice(1))
+  }
+  if (dam.includes("Chimera") == true) {
+    chimTraitPool.push(
+      ...extractFromList(dam, "Chimera")
+      .replace(/Delta\([^)]+\)/g, "")
+      .split("+").filter(x => x !== "").slice(1))
+  }
+  // True/false statement to check if chimera is present in parents
+  if (dam.includes("Chimera") == true || sire.includes("Chimera") == true) {
+    var hasChim = true
+  } else {var hasChim = false}
+
+  // Removes Delta & Chimera parentheses from geno, if any
+  var sirePre = replaceFromList(sire, "Delta")
+  var damPre = replaceFromList(dam, "Delta")
+  sirePre = replaceFromList(sirePre, "Chimera")
+  damPre = replaceFromList(damPre, "Chimera")
+
+  // splits species and traits
+  const sireSpecies = (sirePre.split("/"))[0].split("+")
+  const damSpecies = (damPre.split("/"))[0].split("+")
+
+  var sireTraitsRaw = (sirePre.split("/"))[1].split("+")
+  var damTraitsRaw = (damPre.split("/"))[1].split("+")
 
   // Creates a raw species pool, and a species pool without duplicates
   var speciesPoolRaw = [...sireSpecies, ...damSpecies]
@@ -372,15 +430,16 @@ function breed(divID) {
   var damSpeciesAmnt = damSpecies.length
 
   // Separates color trait
-  sireColor = sireTraitsRaw[0]
-  damColor = damTraitsRaw[0]
+  var sireColor = sireTraitsRaw[0]
+  var damColor = damTraitsRaw[0]
   // removes color trait from raw list
   sireTraitsRaw.splice(0,1)
   damTraitsRaw.splice(0,1)
 
   // removes duplicate traits from individual parent lists
-  var sireTraits = listFixer(sireTraitsRaw,"Fusion,Birthday Bash","")
-  var damTraits = listFixer(damTraitsRaw,"Fusion,Birthday Bash","")
+  var sireTraits = listFixer(sireTraitsRaw,"Fusion,Birthday Bash,Chimera","")
+  var damTraits = listFixer(damTraitsRaw,"Fusion,Birthday Bash,Chimera","")
+
   // counts amount of traits each parent has
   var sireTraitAmnt = sireTraits.length
   var damTraitAmnt = damTraits.length
@@ -388,7 +447,7 @@ function breed(divID) {
   // Creates a raw trait pool, and a trait pool without duplicates
   var traitPoolRaw = [...sireTraits, ...damTraits]
   var traitPool = listFixer(traitPoolRaw,"","")
-  var maxTraits = traitPool.length
+  var maxTraitsRaw = traitPool.length
 
   // defines childAmnt
   var childAmnt = 1
@@ -450,7 +509,7 @@ function breed(divID) {
     }
 
     ran = random(100)
-    if (speciesPool == 0 || (speciesPoolRaw.includes("Ditto") && ran < 2)) {
+    if (speciesPool.length == 0 || (speciesPoolRaw.includes("Ditto") && ran < 2)) {
       // Defaults to Ditto if there are no inheritable species
       childSpecies.push("Ditto")
       childSpeciesAmnt = 0
@@ -471,19 +530,47 @@ function breed(divID) {
     var childTraitPool = [...traitPoolRaw]
     var childTraits = []
     var childTraitAmnt = 0
+    var maxTraits = maxTraitsRaw
+    var maxTraitsChim = 0
+
+    // allows traits contained in chimera to rarely pass down (30%)
+    ran = random (100)
+    if (hasChim == true && chimTraitPool.length > 0 && ran < 30) {
+      childTraitPool.push(...chimTraitPool)
+      // edits maxTraits value to be slightly higher if chimera traits are added to the pool
+      maxTraitsChim = listFixer(childTraitPool,"","").length
+      // if child has at least 3 unique traits in pool, maxTraits will remain close to its original value (parents' trait amounts w/o chimera)
+      if (maxTraitsChim >= 3) {
+        // if the impact of chimera traits on trait amount is significant (more than 40% of total traits), maxTraits is clamped to natural value + 1
+        if (chimTraitPool.length / childTraitPool.length >= 0.4 && maxTraitsChim > maxTraits) {
+          maxTraits = maxTraits + 1
+        } else {
+          maxTraits = maxTraitsChim - Math.round(chimTraitPool.length / 2)
+        }
+      } else {
+        maxTraits = maxTraitsChim
+      }
+    }
 
     // Determines child's amount of traits
     ran = random(100)
-    if (ran < 15) {
+    if (ran < 21) {
       childTraitAmnt = random(maxTraits - sireTraitAmnt + 1) + sireTraitAmnt
-    } else if (ran < 30){
+    } else if (ran < 42){
       childTraitAmnt = random(maxTraits - damTraitAmnt + 1) + damTraitAmnt
-    } else if (ran < 60) {
+    } else if (ran < 63) {
       childTraitAmnt = sireTraitAmnt
-    } else if (ran < 90) {
+    } else if (ran < 85) {
       childTraitAmnt = damTraitAmnt
     } else {
-      childTraitAmnt = 0
+      ran = random(100)
+      if (ran > 85 && maxTraits >= 2) {
+        childTraitAmnt = 2
+      } else if (ran > 60 && maxTraits >= 1) {
+        childTraitAmnt = 1
+      } else {
+        childTraitAmnt = 0
+      }
     }
 
     if (childTraitAmnt > maxTraits) {
@@ -519,6 +606,42 @@ function breed(divID) {
     // TRAITS END
 
     childTraits = listFixer(childTraits,"","")
+
+    // ADD DELTA TYPES
+    var childDeltaPool = [...deltaTypePool]
+    var maxDelta = listFixer(childDeltaPool,"","").length
+    var childDelta = []
+    var deltaAmnt = 0
+
+    // determines amount of child delta types
+    if (childTraits.includes("Delta") == true) {
+      ran = random(100)
+      if (ran > 90 && maxDelta >= 4) {
+        deltaAmnt = 4
+      } else if (ran > 75 && maxDelta >= 3) {
+        deltaAmnt = 3
+      } else if (ran > 40 && maxDelta >= 2) {
+        deltaAmnt = 2
+      } else {
+        deltaAmnt = 1
+      }
+    }
+
+    // Determines child's delta types
+    for (let i = 0; i < deltaAmnt; i++) {
+      listLength = childDeltaPool.length
+      childID = random(listLength)
+      childDelta.push(childDeltaPool[childID])
+      childDeltaPool.splice(childID,1)
+    }
+    // removes duplicates if any
+    childDelta = listFixer(childDelta,"","")
+
+    var index = childTraits.indexOf("Delta")
+    if (index !== -1) {
+      childTraits.splice(index,1,"Delta("+childDelta.join("+")+")")
+    }
+
 
     if (childTraits.includes("Shiny")) {
       children.push(childSpecies.join("+")+"/"+childTraits.join("+")+"&#x2728;")
