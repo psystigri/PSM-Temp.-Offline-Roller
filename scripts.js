@@ -643,10 +643,22 @@ function breed(divID) {
     }
 
 
-    if (childTraits.includes("Shiny")) {
-      children.push(childSpecies.join("+")+"/"+childTraits.join("+")+"&#x2728;")
+    var includeEgg = document.getElementById("includeEgg").checked
+
+    if (includeEgg == true) {
+    // if (EGG) is checked
+      if (childTraits.includes("Shiny")) {
+        children.push("**(EGG)** "+childSpecies.join("+")+"/"+childTraits.join("+")+"&#x2728;")
+      } else {
+        children.push("**(EGG)** "+childSpecies.join("+")+"/"+childTraits.join("+"))
+      }
+    // if (EGG) isn't checked
     } else {
-      children.push(childSpecies.join("+")+"/"+childTraits.join("+"))
+      if (childTraits.includes("Shiny")) {
+        children.push(childSpecies.join("+")+"/"+childTraits.join("+")+"&#x2728;")
+      } else {
+        children.push(childSpecies.join("+")+"/"+childTraits.join("+"))
+      }
     }
   }
 
