@@ -388,14 +388,16 @@ function breed(divID) {
   if (sire.includes("Chimera") == true) {
     chimTraitPool.push(
       ...extractFromList(sire, "Chimera")
-      .replace(/Delta\([^)]+\)/g, "")
-      .split("+").filter(x => x !== "").slice(1))
+      .split("+")
+      .filter(x => !x.startsWith("Delta("))
+      .filter(x => x !== "").slice(1))
   }
   if (dam.includes("Chimera") == true) {
     chimTraitPool.push(
       ...extractFromList(dam, "Chimera")
-      .replace(/Delta\([^)]+\)/g, "")
-      .split("+").filter(x => x !== "").slice(1))
+      .split("+")
+      .filter(x => !x.startsWith("Delta("))
+      .filter(x => x !== "").slice(1))
   }
   // True/false statement to check if chimera is present in parents
   if (dam.includes("Chimera") == true || sire.includes("Chimera") == true) {
