@@ -293,7 +293,7 @@ function listFixer(list, exceptions, keepers) {
 
 function extractFromList (input, trait) {
   // trait = "Delta" or "Chimera"
-  const regex = new RegExp(trait + "\\(([^)]+)\\)");
+  const regex = new RegExp(trait + "\\s*\\(([^)]+)\\)");
   const match = input.match(regex)
 
   return match ? match[1] : false
@@ -301,7 +301,7 @@ function extractFromList (input, trait) {
 
 function replaceFromList (input, trait) {
   // trait = "Delta" or "Chimera"
-  const regex = new RegExp(trait + "\\(([^)]+)\\)");
+  const regex = new RegExp(trait + "\\s*\\(([^)]+)\\)");
 
   return input.replace(regex,trait)
 }
@@ -371,6 +371,34 @@ function breed(divID) {
   var dam = document.getElementById("dam").value
 
   // Extracts Delta & Chimera values if any
+  // Slice here removes the color trait(s) since all are pushed to the same array.
+    var chimTraitPool = []
+    if (sire.includes("Chimera") == true) {
+      let chimText = extractFromList(sire,"Chimera")
+      chimText = replaceFromList(chimText,"Delta")
+      chimTraitPool.push(
+        ...chimText
+        .split("+")
+        .filter(x => !x.startsWith("Delta"))
+        .filter(x => x !== "").slice(1))
+    }
+    if (dam.includes("Chimera") == true) {
+      let chimText = extractFromList(dam,"Chimera")
+      chimText = replaceFromList(chimText,"Delta")
+      chimTraitPool.push(
+        ...chimText
+        .split("+")
+        .filter(x => !x.startsWith("Delta"))
+        .filter(x => x !== "").slice(1))
+    }
+    // True/false statement to check if chimera is present in parents
+    if (dam.includes("Chimera") == true || sire.includes("Chimera") == true) {
+      var hasChim = true
+    } else {var hasChim = false}
+
+    var sirePre = replaceFromList(sire, "Chimera")
+    var damPre = replaceFromList(dam, "Chimera")
+
   var deltaTypePool = []
   if (sire.includes("Delta") == true) {
     deltaTypePool.push(...extractFromList(sire, "Delta").split("+"))
@@ -383,32 +411,9 @@ function breed(divID) {
     var hasDelta = true
   } else {var hasDelta = false}
 
-// Slice here removes the color trait(s) since all are pushed to the same array.
-  var chimTraitPool = []
-  if (sire.includes("Chimera") == true) {
-    chimTraitPool.push(
-      ...extractFromList(sire, "Chimera")
-      .split("+")
-      .filter(x => !x.startsWith("Delta("))
-      .filter(x => x !== "").slice(1))
-  }
-  if (dam.includes("Chimera") == true) {
-    chimTraitPool.push(
-      ...extractFromList(dam, "Chimera")
-      .split("+")
-      .filter(x => !x.startsWith("Delta("))
-      .filter(x => x !== "").slice(1))
-  }
-  // True/false statement to check if chimera is present in parents
-  if (dam.includes("Chimera") == true || sire.includes("Chimera") == true) {
-    var hasChim = true
-  } else {var hasChim = false}
-
   // Removes Delta & Chimera parentheses from geno, if any
-  var sirePre = replaceFromList(sire, "Delta")
-  var damPre = replaceFromList(dam, "Delta")
-  sirePre = replaceFromList(sirePre, "Chimera")
-  damPre = replaceFromList(damPre, "Chimera")
+  sirePre = replaceFromList(sirePre, "Delta")
+  damPre = replaceFromList(damPre, "Delta")
 
   // splits species and traits
   const sireSpecies = (sirePre.split("/"))[0].split("+")
@@ -439,8 +444,8 @@ function breed(divID) {
   damTraitsRaw.splice(0,1)
 
   // removes duplicate traits from individual parent lists
-  var sireTraits = listFixer(sireTraitsRaw,"Fusion,Birthday Bash,Chimera","")
-  var damTraits = listFixer(damTraitsRaw,"Fusion,Birthday Bash,Chimera","")
+  var sireTraits = listFixer(sireTraitsRaw,"Fusion,Birthday Bash,Chimera,Chimera)","")
+  var damTraits = listFixer(damTraitsRaw,"Fusion,Birthday Bash,Chimera,Chimera)","")
 
   // counts amount of traits each parent has
   var sireTraitAmnt = sireTraits.length
@@ -644,7 +649,6 @@ function breed(divID) {
       childTraits.splice(index,1,"Delta("+childDelta.join("+")+")")
     }
 
-
     var includeEgg = document.getElementById("includeEgg").checked
 
     if (includeEgg == true) {
@@ -666,4 +670,4 @@ function breed(divID) {
 
   // writes to #results
   document.getElementById(divID).innerHTML = children.join("<div class='split'></div>")
-}
+  }
