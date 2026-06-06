@@ -106,21 +106,23 @@
       var output = []
 
       for (const item of list) {
+        const cleanItem = item.trim()
+
         // Removes empty items
-        if (item.trim() == "") {
+        if (cleanItem == "") {
           continue
         }
 
         // Removes all items on exceptions lists
-        if (exceptionsList.includes(item)) {
+        if (exceptionsList.includes(cleanItem)) {
           continue
         // Preserves all instances on keepers lists
-        } else if (keepersList.includes(item)) {
-          output.push(item)
+      } else if (keepersList.includes(cleanItem)) {
+          output.push(cleanItem)
           continue
         // Removes duplicates
-        } else if (!output.includes(item)) {
-          output.push(item);
+      } else if (!output.includes(cleanItem)) {
+          output.push(cleanItem);
         }
       }
 
